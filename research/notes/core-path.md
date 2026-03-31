@@ -1,0 +1,137 @@
+# Claude Code 核心主干（提炼版）
+
+## 入口前置分发（cli.tsx）
+- L31: `* Fast-path for --version has zero imports beyond this file.`
+- L36: `// Fast-path for --version/-v: zero module loading needed`
+- L37: `if (args.length === 1 && (args[0] === '--version' || args[0] === '-v' || args[0] === '-V')) {`
+- L47: `} = await import('../utils/startupProfiler.js');`
+- L53: `if (feature('DUMP_SYSTEM_PROMPT') && args[0] === '--dump-system-prompt') {`
+- L57: `} = await import('../utils/config.js');`
+- L61: `} = await import('../utils/model/model.js');`
+- L66: `} = await import('../constants/prompts.js');`
+- L76: `} = await import('../utils/claudeInChrome/mcpServer.js');`
+- L83: `} = await import('../utils/claudeInChrome/chromeNativeHost.js');`
+- L90: `} = await import('../utils/computerUse/mcpServer.js');`
+- L95: `// Fast-path for `--daemon-worker=<kind>` (internal — supervisor spawns this).`
+- L96: `// Must come before the daemon subcommand check: spawned per-worker, so`
+- L100: `if (feature('DAEMON') && args[0] === '--daemon-worker') {`
+- L103: `} = await import('../daemon/workerRegistry.js');`
+- L108: `// Fast-path for `claude remote-control` (also accepts legacy `claude remote` / `claude sync` / `claude bridge`):`
+- L112: `if (feature('BRIDGE_MODE') && (args[0] === 'remote-control' || args[0] === 'rc' || args[0] === 'remote' || args[0] === 'sync' || args[0] === 'bridge')) {`
+- L116: `} = await import('../utils/config.js');`
+- L121: `} = await import('../bridge/bridgeEnabled.js');`
+- L124: `} = await import('../bridge/types.js');`
+- L127: `} = await import('../bridge/bridgeMain.js');`
+- L130: `} = await import('../utils/process.js');`
+- L138: `} = await import('../utils/auth.js');`
+- L151: `// Bridge is a remote control feature - check policy limits`
+- L155: `} = await import('../services/policyLimits/index.js');`
+- L157: `if (!isPolicyAllowed('allow_remote_control')) {`
+- L164: `// Fast-path for `claude daemon [subcommand]`: long-running supervisor.`
+- L165: `if (feature('DAEMON') && args[0] === 'daemon') {`
+- L166: `profileCheckpoint('cli_daemon_path');`
+- L169: `} = await import('../utils/config.js');`
+- L173: `} = await import('../utils/sinks.js');`
+- L176: `daemonMain`
+- L177: `} = await import('../daemon/main.js');`
+- L178: `await daemonMain(args.slice(1));`
+- L182: `// Fast-path for `claude ps|logs|attach|kill` and `--bg`/`--background`.`
+- L185: `if (feature('BG_SESSIONS') && (args[0] === 'ps' || args[0] === 'logs' || args[0] === 'attach' || args[0] === 'kill' || args.includes('--bg') || args.includes('--background'))) {`
+- L189: `} = await import('../utils/config.js');`
+- L191: `const bg = await import('../cli/bg.js');`
+- L192: `switch (args[0]) {`
+- L212: `if (feature('TEMPLATES') && (args[0] === 'new' || args[0] === 'list' || args[0] === 'reply')) {`
+- L216: `} = await import('../cli/handlers/templateJobs.js');`
+- L226: `if (feature('BYOC_ENVIRONMENT_RUNNER') && args[0] === 'environment-runner') {`
+- L230: `} = await import('../environment-runner/main.js');`
+- L238: `if (feature('SELF_HOSTED_RUNNER') && args[0] === 'self-hosted-runner') {`
+- L242: `} = await import('../self-hosted-runner/main.js');`
+- L247: `// Fast-path for --worktree --tmux: exec into tmux before loading full CLI`
+- L249: `if (hasTmuxFlag && (args.includes('-w') || args.includes('--worktree') || args.some(a => a.startsWith('--worktree=')))) {`
+- L250: `profileCheckpoint('cli_tmux_worktree_fast_path');`
+- L253: `} = await import('../utils/config.js');`
+- L257: `} = await import('../utils/worktreeModeEnabled.js');`
+- L261: `} = await import('../utils/worktree.js');`
+- L270: `} = await import('../utils/process.js');`
+- L277: `if (args.length === 1 && (args[0] === '--update' || args[0] === '--upgrade')) {`
+- L290: `} = await import('../utils/earlyInput.js');`
+- L295: `} = await import('../main.js');`
+
+## 正式 CLI / 会话启动（main.tsx）
+- L88: `import { filterCommandsForRemoteMode, getCommands } from './commands.js';`
+- L155: `import { countConcurrentSessions, registerSession, updateSessionName } from 'src/utils/concurrentSessions.js';`
+- L275: `* and the headless -p path (before runHeadless) — both go through`
+- L384: `* These are deferred from setup() to reduce event loop contention and child process`
+- L902: `const program = new CommanderCommand().configureHelp(createSortedHelpConfig()).enablePositionalOptions();`
+- L928: `// a sink attaches. setup() attaches sinks for the default command, but`
+- L929: `// subcommands (doctor, mcp, plugin, auth) never call setup() and would`
+- L1011: `// dir-walk). Must be set before setup() / any of the gated work runs.`
+- L1083: `// teammates without TeamCreate. Must run BEFORE setup() captures`
+- L1159: `worktreeName = undefined; // slug will be generated in setup()`
+- L1214: `// This must be done before setup() captures the snapshot`
+- L1781: `// two-phase loading). Kicked off here to overlap with setup(); awaited`
+- L1782: `// before runHeadless so single-turn -p sees connectors. Skipped under`
+- L1802: `// overlap config I/O with setup(), commands loading, and trust dialog.`
+- L1903: `// IMPORTANT: setup() must be called before any other code that depends on the cwd or worktree setup`
+- L1905: `logForDebugging('[STARTUP] Running setup()...');`
+- L1913: `// Parallelize setup() with commands+agents loading. setup()'s ~28ms is`
+- L1916: `// since --worktree makes setup() process.chdir() (setup.ts:203), and`
+- L1919: `// Register bundled skills/plugins before kicking getCommands() — they're`
+- L1921: `// reads synchronously. Previously ran inside setup() after ~20ms of`
+- L1922: `// await points, so the parallel getCommands() memoized an empty list.`
+- L1927: `const setupPromise = setup(preSetupCwd, permissionMode, allowDangerouslySkipPermissions, worktreeEnabled, worktreeName, tmuxEnabled, sessionId ? validateUuid(sessionId) : undefined, worktreePRNumber, messagingSocketPath)`
+- L1928: `const commandsPromise = worktreeEnabled ? null : getCommands(preSetupCwd);`
+- L1935: `logForDebugging(`[STARTUP] setup() completed in ${Date.now() - setupStart}ms`);`
+- L1969: `// setup() so cwd is final (setup.ts:254 may process.chdir(worktreePath)`
+- L2018: `// NOTE: Model resolution happens after setup() to ensure trust is established before AWS auth`
+- L2022: `// Reuse preSetupCwd unless setup() chdir'd (worktreeEnabled). Saves a`
+- L2027: `// Join the promises kicked before setup() (or start fresh if`
+- L2029: `const [commands, agentDefinitionsResult] = await Promise.all([commandsPromise ?? getCommands(currentCwd), agentDefsPromise ?? getAgentDefinitionsWithOverrides(currentCwd)]);`
+- L2530: `void registerSession().then(registered => {`
+- L2826: `runHeadless`
+- L2829: `void runHeadless(inputPrompt, () => headlessStore.getState(), headlessStore.setState, commandsHeadless, tools, sdkMcpConfigs, agentDefinitions.activeAgents, {`
+- L3337: `const remoteCommands = filterCommandsForRemoteMode(commands);`
+- L3344: `commands: remoteCommands,`
+- L3486: `const remoteCommands = filterCommandsForRemoteMode(commands);`
+- L3493: `commands: remoteCommands,`
+- L3894: `const mcp = program.command('mcp').description('Configure and manage MCP servers').configureHelp(createSortedHelpConfig()).enablePositionalOptions();`
+- L3962: `program.command('server').description('Start a Claude Code session server').option('--port <number>', 'HTTP port', '0').option('--host <string>', 'Bind address', '0.0.0.0').option('--auth-token <token>', 'Bearer token fo`
+- L4046: `program.command('ssh <host> [dir]').description('Run Claude Code on a remote host over SSH. Deploys the binary and ' + 'tunnels API auth back through your local machine — no remote setup needed.').option('--permission-mo`
+- L4059: `program.command('open <cc-url>').description('Connect to a Claude Code server (internal — use cc:// URLs)').option('-p, --print [prompt]', 'Print mode (headless)').option('--output-format <format>', 'Output format: text,`
+- L4100: `const auth = program.command('auth').description('Manage authentication').configureHelp(createSortedHelpConfig());`
+- L4148: `const pluginCmd = program.command('plugin').alias('plugins').description('Manage Claude Code plugins').configureHelp(createSortedHelpConfig());`
+- L4267: `program.command('setup-token').description('Set up a long-lived authentication token (requires Claude subscription)').action(async () => {`
+- L4278: `program.command('agents').description('List configured agents').option('--setting-sources <sources>', 'Comma-separated list of setting sources to load (user, project, local).').action(async () => {`
+- L4289: `const autoModeCmd = program.command('auto-mode').description('Inspect auto mode classifier configuration');`
+- L4323: `program.command('remote-control', {`
+- L4335: `program.command('assistant [sessionId]').description('Attach the REPL as a client to a running bridge session. Discovers sessions via API if no sessionId given.').action(() => {`
+- L4346: `program.command('doctor').description('Check the health of your Claude Code auto-updater. Note: The workspace trust dialog is skipped and stdio servers from .mcp.json are spawned for health checks. Only use this command `
+- L4362: `program.command('update').alias('upgrade').description('Check for updates and install if available').action(async () => {`
+- L4371: `program.command('up').description('[ANT-ONLY] Initialize or upgrade the local dev environment using the "# claude up" section of the nearest CLAUDE.md').action(async () => {`
+- L4382: `program.command('rollback [target]').description('[ANT-ONLY] Roll back to a previous release\n\nExamples:\n  claude rollback                                    Go 1 version back from current\n  claude rollback 3         `
+- L4395: `program.command('install [target]').description('Install Claude Code native build. Use [target] to specify version (stable, latest, or specific version)').option('--force', 'Force installation even if already installed')`
+- L4412: `program.command('log').description('[ANT-ONLY] Manage conversation logs.').argument('[number|sessionId]', 'A number (0, 1, 2, etc.) to display a specific log, or the sesssion ID (uuid) of a log', validateLogId).action(as`
+- L4420: `program.command('error').description('[ANT-ONLY] View error logs. Optionally provide a number (0, -1, -2, etc.) to display a specific log.').argument('[number]', 'A number (0, 1, 2, etc.) to display a specific log', pars`
+- L4428: `program.command('export').description('[ANT-ONLY] Export a conversation to a text file.').usage('<source> <outputFile>').argument('<source>', 'Session ID, log index (0, 1, 2...), or path to a .json/.jsonl log file').argu`
+- L4440: `const taskCmd = program.command('task').description('[ANT-ONLY] Manage task list tasks');`
+- L4492: `program.command('completion <shell>', {`
+
+## 命令聚合（commands.ts）
+- L225: `export const INTERNAL_ONLY_COMMANDS = [`
+- L258: `const COMMANDS = memoize((): Command[] => [`
+- L344: `? INTERNAL_ONLY_COMMANDS`
+- L353: `async function getSkills(cwd: string): Promise<{`
+- L415: `* so this must be re-evaluated on every getCommands() call.`
+- L449: `const loadAllCommands = memoize(async (cwd: string): Promise<Command[]> => {`
+- L455: `getSkills(cwd),`
+- L476: `export async function getCommands(cwd: string): Promise<Command[]> {`
+- L477: `const allCommands = await loadAllCommands(cwd)`
+- L524: `loadAllCommands.cache?.clear?.()`
+- L543: `* model-invocable, loaded from MCP). These live outside getCommands() so`
+- L565: `const allCommands = await getCommands(cwd)`
+- L589: `const allCommands = await getCommands(cwd)`
+- L619: `export const REMOTE_SAFE_COMMANDS: Set<Command> = new Set([`
+- L651: `export const BRIDGE_SAFE_COMMANDS: Set<Command> = new Set(`
+- L670: `* BRIDGE_SAFE_COMMANDS; 'local-jsx' commands render Ink UI and stay blocked.`
+- L675: `return BRIDGE_SAFE_COMMANDS.has(cmd)`
+- L685: `return commands.filter(cmd => REMOTE_SAFE_COMMANDS.has(cmd))`

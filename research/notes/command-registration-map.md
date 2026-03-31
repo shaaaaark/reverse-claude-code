@@ -1,0 +1,143 @@
+# 命令注册体系（初步）
+
+## Slash/Prompt 命令来源（src/commands.ts）
+- `addDir`
+- `advisor`
+- `agents`
+- `branch`
+- `btw`
+- `chrome`
+- `clear`
+- `color`
+- `compact`
+- `config`
+- `copy`
+- `desktop`
+- `context`
+- `contextNonInteractive`
+- `cost`
+- `diff`
+- `doctor`
+- `effort`
+- `exit`
+- `fast`
+- `files`
+- `heapDump`
+- `help`
+- `ide`
+- `init`
+- `keybindings`
+- `installGitHubApp`
+- `installSlackApp`
+- `mcp`
+- `memory`
+- `mobile`
+- `model`
+- `outputStyle`
+- `remoteEnv`
+- `plugin`
+- `pr_comments`
+- `releaseNotes`
+- `reloadPlugins`
+- `rename`
+- `resume`
+- `session`
+- `skills`
+- `stats`
+- `status`
+- `statusline`
+- `stickers`
+- `tag`
+- `theme`
+- `feedback`
+- `review`
+- `ultrareview`
+- `rewind`
+- `securityReview`
+- `terminalSetup`
+- `upgrade`
+- `extraUsage`
+- `extraUsageNonInteractive`
+- `rateLimitOptions`
+- `usage`
+- `usageReport`
+- `vim`
+- `...(webCmd ? [webCmd] : [])`
+- `...(forkCmd ? [forkCmd] : [])`
+- `...(buddy ? [buddy] : [])`
+- `...(proactive ? [proactive] : [])`
+- `...(briefCommand ? [briefCommand] : [])`
+- `...(assistantCommand ? [assistantCommand] : [])`
+- `...(bridge ? [bridge] : [])`
+- `...(remoteControlServerCommand ? [remoteControlServerCommand] : [])`
+- `...(voiceCommand ? [voiceCommand] : [])`
+- `thinkback`
+- `thinkbackPlay`
+- `permissions`
+- `plan`
+- `privacySettings`
+- `hooks`
+- `exportCommand`
+- `sandboxToggle`
+- `...(!isUsing3PServices() ? [logout, login()] : [])`
+- `passes`
+- `...(peersCmd ? [peersCmd] : [])`
+- `tasks`
+- `...(workflowsCmd ? [workflowsCmd] : [])`
+- `...(torch ? [torch] : [])`
+- `...(process.env.USER_TYPE === 'ant' && !process.env.IS_DEMO`
+- `? INTERNAL_ONLY_COMMANDS`
+- `: [])`
+
+## Commander program 子命令（src/main.tsx）
+- `mcp`
+- `server`
+- `ssh <host> [dir]`
+- `open <cc-url>`
+- `auth`
+- `plugin`
+- `setup-token`
+- `agents`
+- `auto-mode`
+- `remote-control`
+- `assistant [sessionId]`
+- `doctor`
+- `update`
+- `up`
+- `rollback [target]`
+- `install [target]`
+- `log`
+- `error`
+- `export`
+- `task`
+- `completion <shell>`
+
+## mcp 子命令
+- `serve`
+- `remove <name>`
+- `list`
+- `get <name>`
+- `add-json <name> <json>`
+- `add-from-claude-desktop`
+- `reset-project-choices`
+
+## auth 子命令
+- `login`
+- `status`
+- `logout`
+
+## plugin 子命令
+- `validate <path>`
+- `list`
+- `marketplace`
+- `install <plugin>`
+- `uninstall <plugin>`
+- `enable <plugin>`
+- `disable [plugin]`
+- `update <plugin>`
+
+## marketplace 子命令
+- `add <source>`
+- `list`
+- `remove <name>`
+- `update [name]`

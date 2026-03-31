@@ -1,0 +1,12 @@
+阶段 18：把提炼结果升级成设计文档
+- 新增文档：
+  - `research/notes/cli-startup-flow.md`
+  - `research/notes/command-system-layering.md`
+  - `research/notes/queryengine-architecture.md`
+  - `research/notes/minimal-project-skeleton.md`
+- 目标从“继续补外围模块”正式转向“指导最小复刻”。
+- 当前产出已经从单纯逆向笔记，升级为可指导实现的架构文档：
+  - CLI 启动流程
+  - 命令系统分层
+  - QueryEngine / Tool / Model / Session 关系
+  - 最小项目骨架建议

@@ -1,0 +1,219 @@
+# 用户输入分类表（提炼）
+
+```text
+User input
+  |
+  |-- slash command?        -> /help /review /memory /status ...
+  |-- local command?        -> 本地执行并直接返回结果
+  |-- prompt command?       -> 展开成 prompt / system additions
+  |-- plain text prompt?    -> 直接进入模型主循环
+  `-- special flags/modes?  -> print/headless/remote/...
+```
+
+## 相关代码线索
+### src/utils/processUserInput/processUserInput.ts
+- L16: `} from '../../commands.js'`
+- L28: `import type { PermissionMode } from '../../types/permissions.js'`
+- L56: `import { parseSlashCommand } from '../slashCommandParsing.js'`
+- L61: `import { processTextPrompt } from './processTextPrompt.js'`
+- L76: `// Output text for non-interactive mode (e.g., forked commands)`
+- L79: `// When set, prefills or submits the next input after command completes`
+- L80: `// Used by /discover to chain into the selected feature's command`
+- L85: `export async function processUserInput({`
+- L117: `setUserInputOnProcessing?: (prompt?: string) => void`
+- L125: `* trigger local slash commands or skills.`
+- L129: `* When true, slash commands matching isBridgeSafeCommand() execute even`
+- L136: `* system-generated prompts.`
+- L142: `// Immediately show the user input prompt while we are still processing the input.`
+- L143: `// Skip for isMeta (system-generated prompts like scheduled tasks) — those`
+- L145: `if (mode === 'prompt' && inputString !== null && !isMeta) {`
+- L149: `queryCheckpoint('query_process_user_input_base_start')`
+- L153: `const result = await processUserInputBase(`
+- L165: `appState.toolPermissionContext.mode,`
+- L172: `queryCheckpoint('query_process_user_input_base_end')`
+- L184: `appState.toolPermissionContext.mode,`
+- L202: ``${blockingMessage}\n\nOriginal prompt: ${input}`,`
+- L211: `// If preventContinuation is set, stop processing but keep the original`
+- L212: `// prompt in context.`
+- L236: `toolUseID: `hook-${randomUUID()}`,`
+- L281: `async function processUserInputBase(`
+- L293: `permissionMode?: PermissionMode,`
+- L307: `// this is just `input`; for array input it's the processed blocks. We pass`
+- L308: `// this (not raw `input`) to processTextPrompt so resized/normalized image`
+- L310: `// discarded for the regular prompt path. Also normalizes bridge inputs`
+- L317: `queryCheckpoint('query_image_processing_start')`
+- L318: `const processedBlocks: ContentBlockParam[] = []`
+- L329: `processedBlocks.push(resized.block)`
+- L331: `processedBlocks.push(block)`
+- L334: `normalizedInput = processedBlocks`
+- L335: `queryCheckpoint('query_image_processing_end')`
+- L338: `const lastBlock = processedBlocks[processedBlocks.length - 1]`
+- L341: `precedingInputBlocks = processedBlocks.slice(0, -1)`
+- L343: `precedingInputBlocks = processedBlocks`
+- L347: `if (inputString === null && mode !== 'prompt') {`
+- L359: `// (for manipulation with CLI tools, uploading to PRs, etc.)`
+- L364: `// Resize pasted images to ensure they fit within API limits (parallel processing)`
+- L365: `queryCheckpoint('query_pasted_image_processing_start')`
+- L420: `queryCheckpoint('query_pasted_image_processing_end')`
+- L422: `// Bridge-safe slash command override: mobile/web clients set bridgeOrigin`
+- L424: `// immediate-command fast paths). Resolve the command here — if it passes`
+- L426: `// known-but-unsafe command (local-jsx UI or terminal-only), short-circuit`
+- L432: `? findCommand(parsed.commandName, context.options.commands)`
+- L443: ``<local-command-stdout>${msg}</local-command-stdout>`,`
+- L458: `// the CCR prompt receives paste contents and stays grammatical. See`
+- L459: `// keyword.ts for the quote/path exclusions. Interactive prompt mode +`
+- L460: `// non-slash-prefixed only:`
+- L461: `// headless/print mode filters local-jsx commands out of context.options,`
+- L464: `// Runs before attachment extraction so this path matches the slash-command`
+- L469: `mode === 'prompt' &&`
+- L480: `const { processSlashCommand } = await import('./processSlashCommand.js')`
+- L481: `const slashResult = await processSlashCommand(`
+- L492: `return addImageMetadataMessage(slashResult, imageMetadataTexts)`
+- L495: `// For slash commands, attachments will be extracted within getMessagesForSlashCommand`
+- L499: `(mode !== 'prompt' || effectiveSkipSlash || !inputString.startsWith('/'))`
+- L516: `// Bash commands`
+- L518: `const { processBashCommand } = await import('./processBashCommand.js')`
+- L520: `await processBashCommand(`
+- L531: `// Slash commands`
+- L538: `const { processSlashCommand } = await import('./processSlashCommand.js')`
+- L539: `const slashResult = await processSlashCommand(`
+- L550: `return addImageMetadataMessage(slashResult, imageMetadataTexts)`
+- L554: `if (inputString !== null && mode === 'prompt') {`
+- L576: `// Regular user prompt`
+- L578: `processTextPrompt(`
+- L584: `permissionMode,`
+
+### src/utils/processUserInput/processSlashCommand.tsx
+- L5: `import { builtInCommandNames, type Command, type CommandBase, findCommand, getCommand, getCommandName, hasCommand, type PromptCommand } from 'src/commands.js';`
+- L19: `import type { CommandResultDisplay } from '../../types/command.js';`
+- L40: `import { parseSlashCommand } from '../slashCommandParsing.js';`
+- L50: `command: Command;`
+- L60: `* Executes a slash command with context: fork in a sub-agent.`
+- L62: `async function executeForkedSlashCommand(command: CommandBase & PromptCommand, args: string, context: ProcessUserInputContext, precedingInputBlocks: ContentBlockParam[], setToolJSX: SetToolJSXFn, canUseTool: CanUseToolFn`
+- L64: `const pluginMarketplace = command.pluginInfo ? parsePluginIdentifier(command.pluginInfo.repository).marketplace : undefined;`
+- L65: `logEvent('tengu_slash_command_forked', {`
+- L66: `command_name: command.name as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,`
+- L67: `invocation_trigger: 'user-slash' as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,`
+- L68: `...(command.pluginInfo && {`
+- L69: `_PROTO_plugin_name: command.pluginInfo.pluginManifest.name as AnalyticsMetadata_I_VERIFIED_THIS_IS_PII_TAGGED,`
+- L73: `...buildPluginCommandTelemetryFields(command.pluginInfo)`
+- L80: `promptMessages`
+- L81: `} = await prepareForkedCommandContext(command, args, context);`
+- L84: `const agentDefinition = command.effort !== undefined ? {`
+- L86: `effort: command.effort`
+- L88: `logForDebugging(`Executing forked slash command /${command.name} with agent ${agentDefinition.agentType}`);`
+- L91: `// immediately, re-enqueue the result as an isMeta prompt when done.`
+- L99: `// isMeta prompts are hidden. Outside assistant mode, context:fork commands`
+- L107: `const commandName = getCommandName(command);`
+- L114: `// re-enqueued result prompt below: that second turn runs in a fresh`
+- L120: `// Re-enter the queue as a hidden prompt. isMeta: hides from queue`
+- L128: `mode: 'prompt',`
+- L151: `promptMessages,`
+- L160: `model: command.model as ModelAlias | undefined,`
+- L169: `logForDebugging(`Background forked command /${commandName} completed (agent ${agentId})`);`
+- L170: `enqueueResult(`<scheduled-task-result command="/${commandName}">\n${resultText}\n</scheduled-task-result>`);`
+- L173: `enqueueResult(`<scheduled-task-result command="/${commandName}" status="failed">\n${err instanceof Error ? err.message : String(err)}\n</scheduled-task-result>`);`
+- L181: `command`
+- L190: `const parentToolUseID = `forked-command-${command.name}`;`
+- L201: `prompt: skillContent,`
+- L231: `promptMessages,`
+- L239: `model: command.model as ModelAlias | undefined,`
+- L273: `logForDebugging(`Forked slash command /${command.name} completed with agent ${agentId}`);`
+- L275: `// Prepend debug log for ant users so it appears inside the command output`
+- L283: `inputString: `/${getCommandName(command)} ${args}`.trim(),`
+- L287: `content: `<local-command-stdout>\n${resultText}\n</local-command-stdout>``
+- L292: `command,`
+- L298: `* Determines if a string looks like a valid command name.`
+- L299: `* Valid command names only contain letters, numbers, colons, hyphens, and underscores.`
+- L301: `* @param commandName - The potential command name to check`
+- L302: `* @returns true if it looks like a command name, false if it contains non-command characters`
+- L304: `export function looksLikeCommand(commandName: string): boolean {`
+- L307: `return !/[^a-zA-Z0-9:\-_]/.test(commandName);`
+- L312: `logEvent('tengu_input_slash_missing', {});`
+- L313: `const errorMessage = 'Commands are in the form `/command [args]`';`
+- L326: `commandName,`
+- L330: `const sanitizedCommandName = isMcp ? 'mcp' : !builtInCommandNames().has(commandName) ? 'custom' : commandName;`
+- L332: `// Check if it's a real command before processing`
+- L333: `if (!hasCommand(commandName, context.options.commands)) {`
+- L334: `// Check if this looks like a command name vs a file path or other input`
+- L338: `await getFsImplementation().stat(`/${commandName}`);`
+- L341: `// Not a file path — treat as command name`
+- L343: `if (looksLikeCommand(commandName) && !isFilePath) {`
+- L344: `logEvent('tengu_input_slash_invalid', {`
+- L345: `input: commandName as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS`
+- L347: `const unknownMessage = `Unknown skill: ${commandName}`;`
+- L362: `const promptId = randomUUID();`
+- L363: `setPromptId(promptId);`
+- L364: `logEvent('tengu_input_prompt', {});`
+- L365: `// Log user prompt event for OTLP`
+- L366: `void logOTelEvent('user_prompt', {`
+- L367: `prompt_length: String(inputString.length),`
+- L368: `prompt: redactIfDisabled(inputString),`
+- L369: `'prompt.id': promptId`
+- L383: `// Track slash command usage for feature discovery`
+- L391: `command: returnedCommand,`
+- L395: `} = await getMessagesForSlashCommand(commandName, parsedArgs, setToolJSX, context, precedingInputBlocks, imageContentBlocks, isAlreadyProcessing, canUseTool, uuid);`
+- L397: `// Local slash commands that skip messages`
+- L403: `// Add plugin metadata if this is a plugin command`
+- L404: `if (returnedCommand.type === 'prompt' && returnedCommand.pluginInfo) {`
+- L427: `logEvent('tengu_input_command', {`
+- L429: `invocation_trigger: 'user-slash' as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,`
+- L431: `skill_name: commandName as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,`
+- L432: `...(returnedCommand.type === 'prompt' && {`
+- L452: `// For invalid commands, preserve both the user message and error`
+- L453: `if (newMessages.length === 2 && newMessages[1]!.type === 'user' && typeof newMessages[1]!.message.content === 'string' && newMessages[1]!.message.content.startsWith('Unknown command:')) {`
+- L457: `logEvent('tengu_input_slash_invalid', {`
+- L458: `input: commandName as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS`
+- L469: `// A valid command`
+- L474: `// Add plugin metadata if this is a plugin command`
+- L475: `if (returnedCommand.type === 'prompt' && returnedCommand.pluginInfo) {`
+- L495: `logEvent('tengu_input_command', {`
+- L497: `invocation_trigger: 'user-slash' as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,`
+- L499: `skill_name: commandName as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,`
+- L500: `...(returnedCommand.type === 'prompt' && {`
+- L525: `async function getMessagesForSlashCommand(commandName: string, args: string, setToolJSX: SetToolJSXFn, context: ProcessUserInputContext, precedingInputBlocks: ContentBlockParam[], imageContentBlocks: ContentBlockParam[],`
+- L526: `const command = getCommand(commandName, context.options.commands);`
+- L528: `// Track skill usage for ranking (only for prompt commands that are user-invocable)`
+- L529: `if (command.type === 'prompt' && command.userInvocable !== false) {`
+- L530: `recordSkillUsage(commandName);`
+- L533: `// Check if the command is user-invocable`
+- L535: `if (command.userInvocable === false) {`
+- L539: `inputString: `/${commandName}`,`
+- L543: `content: `This skill can only be invoked by Claude, not directly by users. Ask Claude to use the "${commandName}" skill for you.``
+- L546: `command`
+- L550: `switch (command.type) {`
+- L568: `command,`
+- L581: `// In fullscreen the command just showed as a centered modal`
+
+### src/utils/processUserInput/processTextPrompt.ts
+- L8: `} from 'src/types/message.js'`
+- L11: `import { createUserMessage } from '../messages.js'`
+- L17: `} from '../userPromptKeywords.js'`
+- L28: `messages: (UserMessage | AttachmentMessage | SystemMessage)[]`
+- L31: `const promptId = randomUUID()`
+- L32: `setPromptId(promptId)`
+- L34: `const userPromptText =`
+- L37: `: input.find(block => block.type === 'text')?.text || ''`
+- L38: `startInteractionSpan(userPromptText)`
+- L40: `// Emit user_prompt OTEL event for both string (CLI) and array (SDK/VS Code)`
+- L42: `// sessions never emitted user_prompt (anthropics/claude-code#33301).`
+- L43: `// For array input, use the LAST text block: createUserContent pushes the`
+- L44: `// user's message last (after any <ide_selection>/attachment context blocks),`
+- L45: `// so .findLast gets the actual prompt. userPromptText (first block) is kept`
+- L50: `: input.findLast(block => block.type === 'text')?.text || ''`
+- L52: `void logOTelEvent('user_prompt', {`
+- L53: `prompt_length: String(otelPromptText.length),`
+- L54: `prompt: redactIfDisabled(otelPromptText),`
+- L55: `'prompt.id': promptId,`
+- L59: `const isNegative = matchesNegativeKeyword(userPromptText)`
+- L60: `const isKeepGoing = matchesKeepGoingKeyword(userPromptText)`
+- L61: `logEvent('tengu_input_prompt', {`
+- L66: `// If we have pasted images, create a message with image content`
+- L68: `// Build content: text first, then images below`
+- L69: `const textContent =`
+- L72: `? [{ type: 'text' as const, text: input }]`
+- L75: `const userMessage = createUserMessage({`
+- L76: `content: [...textContent, ...imageContentBlocks],`
+- L84: `messages: [userMessage, ...attachmentMessages],`
+- L89: `const userMessage = createUserMessage({`
+- L97: `messages: [userMessage, ...attachmentMessages],`

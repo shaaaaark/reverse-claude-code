@@ -1,0 +1,2 @@
+export const WORKFLOW_TOOL_CONSTANTS = {};
+export default WORKFLOW_TOOL_CONSTANTS;

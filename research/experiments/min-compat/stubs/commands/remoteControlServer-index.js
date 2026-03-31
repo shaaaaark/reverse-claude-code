@@ -1,0 +1,1 @@
+export default { name: 'remote-control-server', type: 'local', description: 'stub remote control server', source: 'builtin', isEnabled(){ return false; }, async call(){ return { type: 'text', text: 'stub' }; } };

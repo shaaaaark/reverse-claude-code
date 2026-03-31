@@ -1,0 +1,14 @@
+阶段 15：清理 monitor task / discover skills / compact config 支路
+- 已为以下模块添加最小 stub：
+  - MonitorMcpTask
+  - MonitorMcpDetailDialog
+  - cachedMCConfig
+  - DiscoverSkillsTool/prompt
+  - skillSearch/featureCheck
+- 再次运行最小 bundle 后，unresolved 继续维持在 5 个，并迁移到 workflow 常量、assistant 相关与 SDK runtime 类型层：
+  - `../tools/WorkflowTool/constants.js`
+  - `./components/agents/SnapshotUpdateDialog.js`
+  - `./assistant/AssistantSessionChooser.js`
+  - `./commands/assistant/assistant.js`
+  - `./sdk/runtimeTypes.js`
+- 结论：B 路线仍在稳定前进，当前阻塞继续脱离业务主链，剩余模块更偏向 assistant / workflow / sdk 附属支路。

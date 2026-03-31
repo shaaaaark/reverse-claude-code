@@ -1,0 +1,14 @@
+阶段 19：把 QueryEngine 主循环升级成可实现文档
+- 新增文档：
+  - `research/notes/input-classification.md`
+  - `research/notes/tool-call-lifecycle.md`
+  - `research/notes/minimal-session-state.md`
+  - `research/notes/reimplementation-priority.md`
+  - `research/notes/queryengine-event-flow.md`
+- 当前工作重点从“看懂代码结构”继续推进到“如何实现一个最小可用主干”。
+- 这批文档分别回答：
+  - 用户输入如何分类进入系统
+  - tool call 如何在 query loop 中推进
+  - session state 最小需要保留什么
+  - 最小复刻时应该先做什么、后做什么
+  - QueryEngine 事件流如何串起来

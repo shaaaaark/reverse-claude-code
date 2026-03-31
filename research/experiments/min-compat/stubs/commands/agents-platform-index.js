@@ -1,0 +1,1 @@
+export default { name: 'agents-platform', type: 'local', description: 'stub agents-platform', source: 'builtin', isEnabled(){ return false; }, async call(){ return { type: 'text', text: 'stub' }; } };

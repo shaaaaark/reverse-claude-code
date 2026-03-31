@@ -1,0 +1,14 @@
+阶段 14：继续清理 workflow / monitor 支路
+- 已为以下模块添加最小 stub：
+  - WorkflowTool
+  - WorkflowPermissionRequest
+  - MonitorTool
+  - MonitorPermissionRequest
+  - WorkflowDetailDialog
+- 再次运行最小 bundle 后，unresolved 继续维持在 5 个，并收敛到 monitor task / compact config / discover skills 相关模块：
+  - `../../tasks/MonitorMcpTask/MonitorMcpTask.js`
+  - `./MonitorMcpDetailDialog.js`
+  - `../services/compact/cachedMCConfig.js`
+  - `../tools/DiscoverSkillsTool/prompt.js`
+  - `../services/skillSearch/featureCheck.js`
+- 结论：主入口最小骨架仍在稳定推进；当前残余依赖已越来越偏向可选功能、任务、技能发现与监控细节，而非核心 CLI 启动链路。

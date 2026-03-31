@@ -1,0 +1,14 @@
+阶段 12：继续剥离深层内部模块
+- 已为以下模块添加最小 stub：
+  - TungstenTool
+  - attributionHooks
+  - reactiveCompact
+  - contextCollapse/operations
+  - contextCollapse/index
+- 第二次最小入口骨架推进后，unresolved 继续保持在 5 个，并收敛到更细的资源/提示词/消息组件/主题监听层：
+  - `../utils/ultraplan/prompt.txt`
+  - `../types/connectorText.js`
+  - `./messages/SnipBoundaryMessage.js`
+  - `../tools/SendUserFileTool/prompt.js`
+  - `../../utils/systemThemeWatcher.js`
+- 结论：B 路线持续有效，当前已不再主要受大型业务模块阻塞，而是开始进入“资源文件 / 辅助组件 / 细枝末节”清理阶段。

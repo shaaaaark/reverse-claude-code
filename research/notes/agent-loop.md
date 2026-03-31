@@ -1,0 +1,253 @@
+# Agent / Query 主循环（提炼版）
+
+## QueryEngine
+- L22: `import { getSlashCommandToolSkills } from './commands.js'`
+- L39: `import { type Tools, type ToolUseContext, toolMatchesName } from './Tool.js'`
+- L70: `processUserInput,`
+- L71: `} from './utils/processUserInput/processUserInput.js'`
+- L75: `flushSessionStorage,`
+- L76: `recordTranscript,`
+- L130: `export type QueryEngineConfig = {`
+- L180: `* One QueryEngine per conversation. Each submitMessage() call starts a new`
+- L184: `export class QueryEngine {`
+- L194: `// processUserInputContext rebuilds inside submitMessage, but is cleared`
+- L195: `// at the start of each submitMessage to avoid unbounded growth across`
+- L209: `async *submitMessage(`
+- L329: `toolMatchesName(t, SYNTHETIC_OUTPUT_TOOL_NAME),`
+- L335: `let processUserInputContext: ProcessUserInputContext = {`
+- L341: `// the result.  The second processUserInputContext below (after`
+- L404: `processUserInputContext,`
+- L416: `} = await processUserInput({`
+- L421: `...processUserInputContext,`
+- L437: `// loop. The for-await below only calls recordTranscript when ask() yields`
+- L451: `const transcriptPromise = recordTranscript(messages)`
+- L460: `await flushSessionStorage()`
+- L492: `processUserInputContext = {`
+- L524: `updateFileHistoryState: processUserInputContext.updateFileHistoryState,`
+- L525: `updateAttributionState: processUserInputContext.updateAttributionState,`
+- L535: `getSlashCommandToolSkills(getCwd()),`
+- L609: `await recordTranscript(messages)`
+- L614: `await flushSessionStorage()`
+- L675: `for await (const message of query({`
+- L681: `toolUseContext: processUserInputContext,`
+- L712: `await recordTranscript(this.mutableMessages.slice(0, tailIdx + 1))`
+- L728: `void recordTranscript(messages)`
+- L730: `await recordTranscript(messages)`
+- L780: `void recordTranscript(messages)`
+- L834: `void recordTranscript(messages)`
+- L848: `await flushSessionStorage()`
+- L978: `await flushSessionStorage()`
+- L1021: `await flushSessionStorage()`
+- L1078: `await flushSessionStorage()`
+- L1288: `yield* engine.submitMessage(prompt, {`
+
+## 底层 query 路径
+- L12: `} from './services/compact/autoCompact.js'`
+- L13: `import { buildPostCompactMessages } from './services/compact/compact.js'`
+- L16: `? (require('./services/compact/reactiveCompact.js') as typeof import('./services/compact/reactiveCompact.js'))`
+- L29: `import { asSystemPrompt, type SystemPrompt } from './utils/systemPromptType.js'`
+- L39: `} from './types/message.js'`
+- L54: `createMicrocompactBoundaryMessage,`
+- L56: `} from './utils/messages.js'`
+- L57: `import { generateToolUseSummary } from './services/toolUseSummary/toolUseSummaryGenerator.js'`
+- L77: `} from './utils/messageQueueManager.js'`
+- L91: `import { SLEEP_TOOL_NAME } from './tools/SleepTool/prompt.js'`
+- L96: `import { StreamingToolExecutor } from './services/tools/StreamingToolExecutor.js'`
+- L98: `import { runTools } from './services/tools/toolOrchestration.js'`
+- L99: `import { applyToolResultBudget } from './utils/toolResultStorage.js'`
+- L116: `? (require('./services/compact/snipCompact.js') as typeof import('./services/compact/snipCompact.js'))`
+- L123: `function* yieldMissingToolResultBlocks(`
+- L124: `assistantMessages: AssistantMessage[],`
+- L127: `for (const assistantMessage of assistantMessages) {`
+- L128: `// Extract all tool use blocks from this assistant message`
+- L129: `const toolUseBlocks = assistantMessage.message.content.filter(`
+- L130: `content => content.type === 'tool_use',`
+- L133: `// Emit an interruption message for each tool use`
+- L134: `for (const toolUse of toolUseBlocks) {`
+- L135: `yield createUserMessage({`
+- L138: `type: 'tool_result',`
+- L141: `tool_use_id: toolUse.id,`
+- L144: `toolUseResult: errorMessage,`
+- L145: `sourceToolAssistantUUID: assistantMessage.uuid,`
+- L156: `* 1. A message that contains a thinking or redacted_thinking block must be part of a query whose max_thinking_length > 0`
+- L157: `* 2. A thinking block may not be the last message in a block`
+- L158: `* 3. Thinking blocks must be preserved for the duration of an assistant trajectory (a single turn, or if that turn includes a tool_use block then also its subsequent tool_result and the following assistant message)`
+- L167: `* Is this a max_output_tokens error message? If so, the streaming loop should`
+- L178: `return msg?.type === 'assistant' && msg.apiError === 'max_output_tokens'`
+- L181: `export type QueryParams = {`
+- L182: `messages: Message[]`
+- L183: `systemPrompt: SystemPrompt`
+- L185: `systemContext: { [k: string]: string }`
+- L187: `toolUseContext: ToolUseContext`
+- L205: `messages: Message[]`
+- L206: `toolUseContext: ToolUseContext`
+- L215: `// Lets tests assert recovery paths fired without inspecting message contents.`
+- L219: `export async function* query(`
+- L230: `const terminal = yield* queryLoop(params, consumedCommandUuids)`
+- L232: `// propagates through yield*) and on .return() (Return completion closes`
+- L254: `systemPrompt,`
+- L256: `systemContext,`
+- L266: `// of each iteration so reads stay bare-name (`messages`, `toolUseContext`).`
+- L269: `messages: params.messages,`
+- L270: `toolUseContext: params.toolUseContext,`
+- L282: `// task_budget.remaining tracking across compaction boundaries. Undefined`
+- L283: `// until first compact fires — while context is uncompacted the server can`
+- L285: `// api/api/sampling/prompt/renderer.py:292). After a compact, the server sees`
+- L287: `// pre-compact final window that got summarized away. Cumulative across`
+- L288: `// multiple compacts: each subtracts the final context at that compact's`
+- L302: `state.messages,`
+- L303: `state.toolUseContext,`
+- L308: `// Destructure state at the top of each iteration. toolUseContext alone`
+- L309: `// is reassigned within an iteration (queryTracking, messages updates);`
+- L311: `let { toolUseContext } = state`
+- L313: `messages,`
+- L325: `// model streams and tools execute; awaited post-tools alongside the`
+- L326: `// memory prefetch consume. Replaces the blocking assistant_turn path`
+- L333: `messages,`
+- L334: `toolUseContext,`
+- L337: `yield { type: 'stream_request_start' }`
+- L342: `if (!toolUseContext.agentId) {`
+- L347: `const queryTracking = toolUseContext.queryTracking`
+- L349: `chainId: toolUseContext.queryTracking.chainId,`
+- L350: `depth: toolUseContext.queryTracking.depth + 1,`
+- L360: `toolUseContext = {`
+- L361: `...toolUseContext,`
+- L365: `let messagesForQuery = [...getMessagesAfterCompactBoundary(messages)]`
+- L369: `// Enforce per-message budget on aggregate tool result size. Runs BEFORE`
+- L370: `// microcompact — cached MC operates purely by tool_use_id (never inspects`
+- L379: `messagesForQuery = await applyToolResultBudget(`
+- L380: `messagesForQuery,`
+- L381: `toolUseContext.contentReplacementState,`
+- L386: `toolUseContext.agentId,`
+- L390: `toolUseContext.options.tools`
+- L396: `// Apply snip before microcompact (both may run — they are not mutually exclusive).`
+- L397: `// snipTokensFreed is plumbed to autocompact so its threshold check reflects`
+- L399: `// from the protected-tail assistant, which survives snip unchanged).`
+- L403: `const snipResult = snipModule!.snipCompactIfNeeded(messagesForQuery)`
+- L404: `messagesForQuery = snipResult.messages`
+- L407: `yield snipResult.boundaryMessage`
+- L412: `// Apply microcompact before autocompact`
+- L413: `queryCheckpoint('query_microcompact_start')`
+- L414: `const microcompactResult = await deps.microcompact(`
+- L415: `messagesForQuery,`
+- L416: `toolUseContext,`
+- L419: `messagesForQuery = microcompactResult.messages`
+- L420: `// For cached microcompact (cache editing), defer boundary message until after`
+- L424: `? microcompactResult.compactionInfo?.pendingCacheEdits`
+- L426: `queryCheckpoint('query_microcompact_end')`
+- L429: `// Runs BEFORE autocompact so that if collapse gets us under the`
+- L430: `// autocompact threshold, autocompact is a no-op and we keep granular`
+- L433: `// Nothing is yielded — the collapsed view is a read-time projection`
+- L434: `// over the REPL's full history. Summary messages live in the collapse`
+- L437: `// Within a turn, the view flows forward via state.messages at the`
+- L439: `// because the archived messages are already gone from its input.`
+- L442: `messagesForQuery,`
+- L443: `toolUseContext,`
+- L446: `messagesForQuery = collapseResult.messages`
+- L450: `appendSystemContext(systemPrompt, systemContext),`
+- L453: `queryCheckpoint('query_autocompact_start')`
+- L454: `const { compactionResult, consecutiveFailures } = await deps.autocompact(`
+- L455: `messagesForQuery,`
+- L456: `toolUseContext,`
+- L458: `systemPrompt,`
+- L460: `systemContext,`
+- L461: `toolUseContext,`
+- L462: `forkContextMessages: messagesForQuery,`
+- L468: `queryCheckpoint('query_autocompact_end')`
+- L470: `if (compactionResult) {`
+- L475: `compactionUsage,`
+- L476: `} = compactionResult`
+- L478: `logEvent('tengu_auto_compact_succeeded', {`
+- L479: `originalMessageCount: messages.length,`
+- L480: `compactedMessageCount:`
+- L481: `compactionResult.summaryMessages.length +`
+- L482: `compactionResult.attachments.length +`
+- L483: `compactionResult.hookResults.length,`
+- L487: `compactionInputTokens: compactionUsage?.input_tokens,`
+- L488: `compactionOutputTokens: compactionUsage?.output_tokens,`
+- L489: `compactionCacheReadTokens:`
+- L490: `compactionUsage?.cache_read_input_tokens ?? 0,`
+- L491: `compactionCacheCreationTokens:`
+- L492: `compactionUsage?.cache_creation_input_tokens ?? 0,`
+- L493: `compactionTotalTokens: compactionUsage`
+- L494: `? compactionUsage.input_tokens +`
+- L495: `(compactionUsage.cache_creation_input_tokens ?? 0) +`
+- L496: `(compactionUsage.cache_read_input_tokens ?? 0) +`
+- L497: `compactionUsage.output_tokens`
+- L504: `// task_budget: capture pre-compact final context window before`
+- L505: `// messagesForQuery is replaced with postCompactMessages below.`
+- L506: `// iterations[-1] is the authoritative final window (post server tool`
+- L510: `finalContextTokensFromLastResponse(messagesForQuery)`
+- L517: `// Reset on every compact so turnCounter/turnId reflect the MOST RECENT`
+- L518: `// compact. recompactionInfo (autoCompact.ts:190) already captured the`
+- L522: `compacted: true,`
+- L528: `const postCompactMessages = buildPostCompactMessages(compactionResult)`
+- L530: `for (const message of postCompactMessages) {`
+- L531: `yield message`
+- L534: `// Continue on with the current query call using the post compact messages`
+- L535: `messagesForQuery = postCompactMessages`
+- L537: `// Autocompact failed — propagate failure count so the circuit breaker`
+- L540: `...(tracking ?? { compacted: false, turnId: '', turnCounter: 0 }),`
+- L545: `//TODO: no need to set toolUseContext.messages during set-up since it is updated here`
+- L546: `toolUseContext = {`
+- L547: `...toolUseContext,`
+- L548: `messages: messagesForQuery,`
+- L551: `const assistantMessages: AssistantMessage[] = []`
+- L552: `const toolResults: (UserMessage | AttachmentMessage)[] = []`
+- L553: `// @see https://docs.claude.com/en/docs/build-with-claude/tool-use`
+- L554: `// Note: stop_reason === 'tool_use' is unreliable -- it's not always set correctly.`
+- L555: `// Set during streaming whenever a tool_use block arrives — the sole`
+- L557: `const toolUseBlocks: ToolUseBlock[] = []`
+- L564: `toolUseContext.options.tools,`
+- L566: `toolUseContext,`
+- L570: `const appState = toolUseContext.getAppState()`
+- L571: `const permissionMode = appState.toolPermissionContext.mode`
+
+## 用户输入处理
+- L16: `} from '../../commands.js'`
+- L28: `import type { PermissionMode } from '../../types/permissions.js'`
+- L56: `import { parseSlashCommand } from '../slashCommandParsing.js'`
+- L62: `export type ProcessUserInputContext = ToolUseContext & LocalJSXCommandContext`
+- L64: `export type ProcessUserInputBaseResult = {`
+- L76: `// Output text for non-interactive mode (e.g., forked commands)`
+- L79: `// When set, prefills or submits the next input after command completes`
+- L80: `// Used by /discover to chain into the selected feature's command`
+- L85: `export async function processUserInput({`
+- L117: `setUserInputOnProcessing?: (prompt?: string) => void`
+- L125: `* trigger local slash commands or skills.`
+- L129: `* When true, slash commands matching isBridgeSafeCommand() execute even`
+- L136: `* system-generated prompts.`
+- L142: `// Immediately show the user input prompt while we are still processing the input.`
+- L143: `// Skip for isMeta (system-generated prompts like scheduled tasks) — those`
+- L145: `if (mode === 'prompt' && inputString !== null && !isMeta) {`
+- L165: `appState.toolPermissionContext.mode,`
+- L184: `appState.toolPermissionContext.mode,`
+- L202: ``${blockingMessage}\n\nOriginal prompt: ${input}`,`
+- L212: `// prompt in context.`
+- L236: `toolUseID: `hook-${randomUUID()}`,`
+- L293: `permissionMode?: PermissionMode,`
+- L310: `// discarded for the regular prompt path. Also normalizes bridge inputs`
+- L347: `if (inputString === null && mode !== 'prompt') {`
+- L359: `// (for manipulation with CLI tools, uploading to PRs, etc.)`
+- L422: `// Bridge-safe slash command override: mobile/web clients set bridgeOrigin`
+- L424: `// immediate-command fast paths). Resolve the command here — if it passes`
+- L426: `// known-but-unsafe command (local-jsx UI or terminal-only), short-circuit`
+- L432: `? findCommand(parsed.commandName, context.options.commands)`
+- L443: ``<local-command-stdout>${msg}</local-command-stdout>`,`
+- L458: `// the CCR prompt receives paste contents and stays grammatical. See`
+- L459: `// keyword.ts for the quote/path exclusions. Interactive prompt mode +`
+- L460: `// non-slash-prefixed only:`
+- L461: `// headless/print mode filters local-jsx commands out of context.options,`
+- L464: `// Runs before attachment extraction so this path matches the slash-command`
+- L469: `mode === 'prompt' &&`
+- L481: `const slashResult = await processSlashCommand(`
+- L492: `return addImageMetadataMessage(slashResult, imageMetadataTexts)`
+- L495: `// For slash commands, attachments will be extracted within getMessagesForSlashCommand`
+- L499: `(mode !== 'prompt' || effectiveSkipSlash || !inputString.startsWith('/'))`
+- L516: `// Bash commands`
+- L531: `// Slash commands`
+- L539: `const slashResult = await processSlashCommand(`
+- L550: `return addImageMetadataMessage(slashResult, imageMetadataTexts)`
+- L554: `if (inputString !== null && mode === 'prompt') {`
+- L576: `// Regular user prompt`
+- L584: `permissionMode,`

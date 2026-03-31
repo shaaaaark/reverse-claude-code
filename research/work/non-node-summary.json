@@ -1,0 +1,809 @@
+{
+  "count": 1906,
+  "byTop": {
+    "src": 1902,
+    "vendor": 4
+  },
+  "entryCandidates": [
+    {
+      "src": "../src/services/analytics/index.ts",
+      "bytes": 5536
+    },
+    {
+      "src": "../src/entrypoints/sandboxTypes.ts",
+      "bytes": 5733
+    },
+    {
+      "src": "../src/utils/findExecutable.ts",
+      "bytes": 553
+    },
+    {
+      "src": "../src/entrypoints/sdk/coreTypes.ts",
+      "bytes": 1466
+    },
+    {
+      "src": "../src/entrypoints/agentSdkTypes.ts",
+      "bytes": 13062
+    },
+    {
+      "src": "../src/services/oauth/client.ts",
+      "bytes": 18254
+    },
+    {
+      "src": "../src/services/api/client.ts",
+      "bytes": 16160
+    },
+    {
+      "src": "../src/utils/secureStorage/index.ts",
+      "bytes": 559
+    },
+    {
+      "src": "../src/native-ts/yoga-layout/index.ts",
+      "bytes": 83186
+    },
+    {
+      "src": "../src/ink/events/click-event.ts",
+      "bytes": 1330
+    },
+    {
+      "src": "../src/commands/add-dir/validation.ts",
+      "bytes": 3207
+    },
+    {
+      "src": "../src/utils/shell/readOnlyCommandValidation.ts",
+      "bytes": 68144
+    },
+    {
+      "src": "../vendor/image-processor-src/index.ts",
+      "bytes": 4724
+    },
+    {
+      "src": "../src/utils/commandLifecycle.ts",
+      "bytes": 440
+    },
+    {
+      "src": "../src/utils/cliHighlight.ts",
+      "bytes": 2130
+    },
+    {
+      "src": "../src/utils/bash/ParsedCommand.ts",
+      "bytes": 9215
+    },
+    {
+      "src": "../src/utils/codeIndexing.ts",
+      "bytes": 6110
+    },
+    {
+      "src": "../src/components/ClickableImageRef.tsx",
+      "bytes": 7495
+    },
+    {
+      "src": "../src/services/mcp/client.ts",
+      "bytes": 119002
+    },
+    {
+      "src": "../src/services/policyLimits/index.ts",
+      "bytes": 18062
+    },
+    {
+      "src": "../src/components/CustomSelect/index.ts",
+      "bytes": 118
+    },
+    {
+      "src": "../src/services/remoteManagedSettings/index.ts",
+      "bytes": 20907
+    },
+    {
+      "src": "../src/commands/logout/logout.tsx",
+      "bytes": 10732
+    },
+    {
+      "src": "../src/services/oauth/index.ts",
+      "bytes": 6554
+    },
+    {
+      "src": "../src/utils/nativeInstaller/index.ts",
+      "bytes": 456
+    },
+    {
+      "src": "../src/cli/handlers/auth.ts",
+      "bytes": 10748
+    },
+    {
+      "src": "../src/components/Spinner/index.ts",
+      "bytes": 602
+    },
+    {
+      "src": "../src/entrypoints/sdk/coreSchemas.ts",
+      "bytes": 56489
+    },
+    {
+      "src": "../src/hooks/useMainLoopModel.ts",
+      "bytes": 1507
+    },
+    {
+      "src": "../src/commands/login/login.tsx",
+      "bytes": 16105
+    },
+    {
+      "src": "../src/commands/extra-usage/extra-usage-core.ts",
+      "bytes": 3998
+    },
+    {
+      "src": "../src/commands/extra-usage/extra-usage.tsx",
+      "bytes": 3134
+    },
+    {
+      "src": "../src/commands/extra-usage/extra-usage-noninteractive.ts",
+      "bytes": 466
+    },
+    {
+      "src": "../src/commands/extra-usage/index.ts",
+      "bytes": 1101
+    },
+    {
+      "src": "../src/components/SentryErrorBoundary.ts",
+      "bytes": 487
+    },
+    {
+      "src": "../src/components/messages/UserCommandMessage.tsx",
+      "bytes": 9210
+    },
+    {
+      "src": "../src/components/messages/UserLocalCommandOutputMessage.tsx",
+      "bytes": 14566
+    },
+    {
+      "src": "../src/utils/slashCommandParsing.ts",
+      "bytes": 1437
+    },
+    {
+      "src": "../src/utils/processUserInput/processSlashCommand.tsx",
+      "bytes": 144773
+    },
+    {
+      "src": "../src/services/lsp/LSPClient.ts",
+      "bytes": 14361
+    },
+    {
+      "src": "../src/utils/bash/bashPipeCommand.ts",
+      "bytes": 10702
+    },
+    {
+      "src": "../src/tools/PowerShellTool/commandSemantics.ts",
+      "bytes": 5447
+    },
+    {
+      "src": "../src/native-ts/color-diff/index.ts",
+      "bytes": 30015
+    },
+    {
+      "src": "../vendor/audio-capture-src/index.ts",
+      "bytes": 4362
+    },
+    {
+      "src": "../src/tasks/LocalMainSessionTask.ts",
+      "bytes": 15128
+    },
+    {
+      "src": "../src/tools/BashTool/commandSemantics.ts",
+      "bytes": 3658
+    },
+    {
+      "src": "../src/services/teamMemorySync/index.ts",
+      "bytes": 43455
+    },
+    {
+      "src": "../src/tools/BashTool/bashCommandHelpers.ts",
+      "bytes": 8589
+    },
+    {
+      "src": "../src/utils/plugins/loadPluginCommands.ts",
+      "bytes": 30535
+    },
+    {
+      "src": "../src/utils/bash/commands.ts",
+      "bytes": 51020
+    },
+    {
+      "src": "../src/hooks/useClipboardImageHint.ts",
+      "bytes": 2457
+    },
+    {
+      "src": "../src/commands/terminalSetup/terminalSetup.tsx",
+      "bytes": 77516
+    },
+    {
+      "src": "../vendor/modifiers-napi-src/index.ts",
+      "bytes": 1605
+    },
+    {
+      "src": "../src/commands/add-dir/add-dir.tsx",
+      "bytes": 18016
+    },
+    {
+      "src": "../src/commands/add-dir/index.ts",
+      "bytes": 260
+    },
+    {
+      "src": "../src/commands/autofix-pr/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/backfill-sessions/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/btw/btw.tsx",
+      "bytes": 30247
+    },
+    {
+      "src": "../src/commands/btw/index.ts",
+      "bytes": 314
+    },
+    {
+      "src": "../src/commands/good-claude/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/issue/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/feedback/feedback.tsx",
+      "bytes": 5095
+    },
+    {
+      "src": "../src/commands/feedback/index.ts",
+      "bytes": 931
+    },
+    {
+      "src": "../src/native-ts/file-index/index.ts",
+      "bytes": 11985
+    },
+    {
+      "src": "../src/commands/clear/caches.ts",
+      "bytes": 6366
+    },
+    {
+      "src": "../src/commands/clear/conversation.ts",
+      "bytes": 9321
+    },
+    {
+      "src": "../src/commands/clear/clear.ts",
+      "bytes": 254
+    },
+    {
+      "src": "../src/commands/clear/index.ts",
+      "bytes": 603
+    },
+    {
+      "src": "../src/commands/color/color.ts",
+      "bytes": 2712
+    },
+    {
+      "src": "../src/commands/color/index.ts",
+      "bytes": 417
+    },
+    {
+      "src": "../src/commands/commit.ts",
+      "bytes": 3492
+    },
+    {
+      "src": "../src/commands/copy/copy.tsx",
+      "bytes": 42250
+    },
+    {
+      "src": "../src/commands/copy/index.ts",
+      "bytes": 393
+    },
+    {
+      "src": "../src/commands/desktop/desktop.tsx",
+      "bytes": 1645
+    },
+    {
+      "src": "../src/commands/desktop/index.ts",
+      "bytes": 601
+    },
+    {
+      "src": "../src/commands/commit-push-pr.ts",
+      "bytes": 6307
+    },
+    {
+      "src": "../src/commands/compact/compact.ts",
+      "bytes": 10063
+    },
+    {
+      "src": "../src/commands/compact/index.ts",
+      "bytes": 530
+    },
+    {
+      "src": "../src/commands/config/config.tsx",
+      "bytes": 1408
+    },
+    {
+      "src": "../src/commands/config/index.ts",
+      "bytes": 247
+    },
+    {
+      "src": "../src/commands/context/context.tsx",
+      "bytes": 9097
+    },
+    {
+      "src": "../src/commands/context/context-noninteractive.ts",
+      "bytes": 10779
+    },
+    {
+      "src": "../src/commands/context/index.ts",
+      "bytes": 695
+    },
+    {
+      "src": "../src/commands/cost/cost.ts",
+      "bytes": 909
+    },
+    {
+      "src": "../src/commands/cost/index.ts",
+      "bytes": 668
+    },
+    {
+      "src": "../src/commands/diff/diff.tsx",
+      "bytes": 1461
+    },
+    {
+      "src": "../src/commands/diff/index.ts",
+      "bytes": 221
+    },
+    {
+      "src": "../src/commands/ctx_viz/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/doctor/doctor.tsx",
+      "bytes": 1309
+    },
+    {
+      "src": "../src/commands/doctor/index.ts",
+      "bytes": 381
+    },
+    {
+      "src": "../src/commands/memory/memory.tsx",
+      "bytes": 12606
+    },
+    {
+      "src": "../src/commands/memory/index.ts",
+      "bytes": 220
+    },
+    {
+      "src": "../src/components/HelpV2/Commands.tsx",
+      "bytes": 9738
+    },
+    {
+      "src": "../src/commands/help/help.tsx",
+      "bytes": 1432
+    },
+    {
+      "src": "../src/commands/help/index.ts",
+      "bytes": 229
+    },
+    {
+      "src": "../src/commands/ide/ide.tsx",
+      "bytes": 77052
+    },
+    {
+      "src": "../src/commands/ide/index.ts",
+      "bytes": 258
+    },
+    {
+      "src": "../src/commands/init.ts",
+      "bytes": 20849
+    },
+    {
+      "src": "../src/commands/init-verifiers.ts",
+      "bytes": 10301
+    },
+    {
+      "src": "../src/commands/keybindings/keybindings.ts",
+      "bytes": 1643
+    },
+    {
+      "src": "../src/commands/keybindings/index.ts",
+      "bytes": 448
+    },
+    {
+      "src": "../src/commands/login/index.ts",
+      "bytes": 489
+    },
+    {
+      "src": "../src/commands/logout/index.ts",
+      "bytes": 341
+    },
+    {
+      "src": "../src/commands/install-github-app/ApiKeyStep.tsx",
+      "bytes": 23513
+    },
+    {
+      "src": "../src/commands/install-github-app/CheckExistingSecretStep.tsx",
+      "bytes": 18130
+    },
+    {
+      "src": "../src/commands/install-github-app/CheckGitHubStep.tsx",
+      "bytes": 1246
+    },
+    {
+      "src": "../src/commands/install-github-app/ChooseRepoStep.tsx",
+      "bytes": 21279
+    },
+    {
+      "src": "../src/commands/install-github-app/CreatingStep.tsx",
+      "bytes": 9266
+    },
+    {
+      "src": "../src/commands/install-github-app/ErrorStep.tsx",
+      "bytes": 8600
+    },
+    {
+      "src": "../src/commands/install-github-app/ExistingWorkflowStep.tsx",
+      "bytes": 9833
+    },
+    {
+      "src": "../src/commands/install-github-app/InstallAppStep.tsx",
+      "bytes": 9599
+    },
+    {
+      "src": "../src/commands/install-github-app/OAuthFlowStep.tsx",
+      "bytes": 39923
+    },
+    {
+      "src": "../src/commands/install-github-app/SuccessStep.tsx",
+      "bytes": 10164
+    },
+    {
+      "src": "../src/commands/install-github-app/setupGitHubActions.ts",
+      "bytes": 10150
+    },
+    {
+      "src": "../src/commands/install-github-app/WarningsStep.tsx",
+      "bytes": 9130
+    },
+    {
+      "src": "../src/commands/install-github-app/install-github-app.tsx",
+      "bytes": 87155
+    },
+    {
+      "src": "../src/commands/install-github-app/index.ts",
+      "bytes": 471
+    },
+    {
+      "src": "../src/commands/install-slack-app/install-slack-app.ts",
+      "bytes": 875
+    },
+    {
+      "src": "../src/commands/install-slack-app/index.ts",
+      "bytes": 333
+    },
+    {
+      "src": "../src/commands/break-cache/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/components/mcp/index.ts",
+      "bytes": 523
+    },
+    {
+      "src": "../src/commands/plugin/AddMarketplace.tsx",
+      "bytes": 21815
+    },
+    {
+      "src": "../src/commands/plugin/PluginOptionsDialog.tsx",
+      "bytes": 34532
+    },
+    {
+      "src": "../src/commands/plugin/PluginOptionsFlow.tsx",
+      "bytes": 18692
+    },
+    {
+      "src": "../src/commands/plugin/PluginTrustWarning.tsx",
+      "bytes": 3919
+    },
+    {
+      "src": "../src/commands/plugin/pluginDetailsHelpers.tsx",
+      "bytes": 12424
+    },
+    {
+      "src": "../src/commands/plugin/usePagination.ts",
+      "bytes": 4990
+    },
+    {
+      "src": "../src/commands/plugin/BrowseMarketplace.tsx",
+      "bytes": 119532
+    },
+    {
+      "src": "../src/commands/plugin/DiscoverPlugins.tsx",
+      "bytes": 106650
+    },
+    {
+      "src": "../src/commands/plugin/ManageMarketplaces.tsx",
+      "bytes": 118880
+    },
+    {
+      "src": "../src/commands/plugin/PluginErrors.tsx",
+      "bytes": 23312
+    },
+    {
+      "src": "../src/commands/plugin/UnifiedInstalledCell.tsx",
+      "bytes": 44430
+    },
+    {
+      "src": "../src/commands/plugin/ManagePlugins.tsx",
+      "bytes": 321690
+    },
+    {
+      "src": "../src/commands/plugin/parseArgs.ts",
+      "bytes": 2818
+    },
+    {
+      "src": "../src/commands/plugin/ValidatePlugin.tsx",
+      "bytes": 12369
+    },
+    {
+      "src": "../src/commands/plugin/PluginSettings.tsx",
+      "bytes": 128660
+    },
+    {
+      "src": "../src/commands/mcp/mcp.tsx",
+      "bytes": 12126
+    },
+    {
+      "src": "../src/commands/mcp/index.ts",
+      "bytes": 280
+    },
+    {
+      "src": "../src/commands/mobile/mobile.tsx",
+      "bytes": 21797
+    },
+    {
+      "src": "../src/commands/mobile/index.ts",
+      "bytes": 282
+    },
+    {
+      "src": "../src/commands/onboarding/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/createMovedToPluginCommand.ts",
+      "bytes": 1789
+    },
+    {
+      "src": "../src/commands/pr_comments/index.ts",
+      "bytes": 1848
+    },
+    {
+      "src": "../src/commands/release-notes/release-notes.ts",
+      "bytes": 1523
+    },
+    {
+      "src": "../src/commands/release-notes/index.ts",
+      "bytes": 268
+    },
+    {
+      "src": "../src/commands/rename/generateSessionName.ts",
+      "bytes": 2295
+    },
+    {
+      "src": "../src/commands/rename/rename.ts",
+      "bytes": 2757
+    },
+    {
+      "src": "../src/commands/rename/index.ts",
+      "bytes": 281
+    },
+    {
+      "src": "../src/commands/resume/resume.tsx",
+      "bytes": 37020
+    },
+    {
+      "src": "../src/commands/resume/index.ts",
+      "bytes": 303
+    },
+    {
+      "src": "../src/commands/review/ultrareviewEnabled.ts",
+      "bytes": 524
+    },
+    {
+      "src": "../src/commands/review/reviewRemote.ts",
+      "bytes": 11900
+    },
+    {
+      "src": "../src/commands/review/UltrareviewOverageDialog.tsx",
+      "bytes": 9653
+    },
+    {
+      "src": "../src/commands/review/ultrareviewCommand.tsx",
+      "bytes": 9849
+    },
+    {
+      "src": "../src/commands/review.ts",
+      "bytes": 2183
+    },
+    {
+      "src": "../src/commands/session/session.tsx",
+      "bytes": 13007
+    },
+    {
+      "src": "../src/commands/session/index.ts",
+      "bytes": 418
+    },
+    {
+      "src": "../src/commands/share/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/skills/skills.tsx",
+      "bytes": 1888
+    },
+    {
+      "src": "../src/commands/skills/index.ts",
+      "bytes": 226
+    },
+    {
+      "src": "../src/commands/status/status.tsx",
+      "bytes": 1855
+    },
+    {
+      "src": "../src/commands/status/index.ts",
+      "bytes": 322
+    },
+    {
+      "src": "../src/commands/ultraplan.tsx",
+      "bytes": 66585
+    },
+    {
+      "src": "../src/commands/tasks/tasks.tsx",
+      "bytes": 1901
+    },
+    {
+      "src": "../src/commands/tasks/index.ts",
+      "bytes": 256
+    },
+    {
+      "src": "../src/commands/teleport/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/security-review.ts",
+      "bytes": 12531
+    },
+    {
+      "src": "../src/commands/bughunter/index.js",
+      "bytes": 73
+    },
+    {
+      "src": "../src/commands/terminalSetup/index.ts",
+      "bytes": 725
+    },
+    {
+      "src": "../src/commands/usage/usage.tsx",
+      "bytes": 1403
+    },
+    {
+      "src": "../src/commands/usage/index.ts",
+      "bytes": 233
+    },
+    {
+      "src": "../src/commands/theme/theme.tsx",
+      "bytes": 5180
+    },
+    {
+      "src": "../src/commands/theme/index.ts",
+      "bytes": 217
+    },
+    {
+      "src": "../src/commands/vim/vim.ts",
+      "bytes": 1139
+    },
+    {
+      "src": "../src/commands/vim/index.ts",
+      "bytes": 273
+    },
+    {
+      "src": "../src/commands/thinkback/thinkback.tsx",
+      "bytes": 61979
+    },
+    {
+      "src": "../src/commands/thinkback/index.ts",
+      "bytes": 442
+    },
+    {
+      "src": "../src/commands/thinkback-play/thinkback-play.ts",
+      "bytes": 1430
+    },
+    {
+      "src": "../src/commands/thinkback-play/index.ts",
+      "bytes": 608
+    },
+    {
+      "src": "../src/commands/permissions/permissions.tsx",
+      "bytes": 2223
+    },
+    {
+      "src": "../src/commands/permissions/index.ts",
+      "bytes": 296
+    },
+    {
+      "src": "../src/commands/plan/plan.tsx",
+      "bytes": 13904
+    },
+    {
+      "src": "../src/commands/plan/index.ts",
+      "bytes": 286
+    },
+    {
+      "src": "../src/utils/immediateCommand.ts",
+      "bytes": 547
+    },
+    {
+      "src": "../src/commands/fast/fast.tsx",
+      "bytes": 33925
+    },
+    {
+      "src": "../src/commands/fast/index.ts",
+      "bytes": 693
+    },
+    {
+      "src": "../src/commands/passes/passes.tsx",
+      "bytes": 3783
+    },
+    {
+      "src": "../src/commands/passes/index.ts",
+      "bytes": 632
+    },
+    {
+      "src": "../src/commands/privacy-settings/privacy-settings.tsx",
+      "bytes": 10043
+    },
+    {
+      "src": "../src/commands/privacy-settings/index.ts",
+      "bytes": 399
+    },
+    {
+      "src": "../src/commands/hooks/hooks.tsx",
+      "bytes": 2679
+    },
+    {
+      "src": "../src/commands/hooks/index.ts",
+      "bytes": 260
+    },
+    {
+      "src": "../src/commands/files/files.ts",
+      "bytes": 688
+    },
+    {
+      "src": "../src/commands/files/index.ts",
+      "bytes": 316
+    },
+    {
+      "src": "../src/commands/branch/branch.ts",
+      "bytes": 9576
+    },
+    {
+      "src": "../src/commands/branch/index.ts",
+      "bytes": 445
+    },
+    {
+      "src": "../src/components/wizard/index.ts",
+      "bytes": 328
+    },
+    {
+      "src": "../src/commands/agents/agents.tsx",
+      "bytes": 2500
+    },
+    {
+      "src": "../src/commands/agents/index.ts",
+      "bytes": 232
+    },
+    {
+      "src": "../src/commands/plugin/plugin.tsx",
+      "bytes": 1590
+    }
+  ]
+}

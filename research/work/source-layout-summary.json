@@ -1,0 +1,10 @@
+{
+  "commands": 207,
+  "tools": 184,
+  "services": 130,
+  "utils": 564,
+  "components": 389,
+  "entrypoints": 8,
+  "bridge": 31,
+  "bootstrap": 1
+}

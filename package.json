@@ -1,0 +1,11 @@
+{
+  "name": "claude-code-recovered",
+  "private": true,
+  "version": "2.1.87-recovered",
+  "type": "module",
+  "description": "Recovered source tree from @anthropic-ai/claude-code sourcemap",
+  "main": "src/entrypoints/cli.tsx",
+  "bin": {
+    "claude-recovered": "src/entrypoints/cli.tsx"
+  }
+}

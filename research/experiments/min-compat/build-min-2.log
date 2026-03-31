@@ -1,0 +1,1055 @@
+✘ [ERROR] Could not resolve "../daemon/workerRegistry.js"
+
+    ../../../src/entrypoints/cli.tsx:103:21:
+      103 │     } = await import('../daemon/workerRegistry.js');
+          ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../daemon/main.js"
+
+    ../../../src/entrypoints/cli.tsx:177:21:
+      177 │     } = await import('../daemon/main.js');
+          ╵                      ~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../cli/bg.js"
+
+    ../../../src/entrypoints/cli.tsx:191:28:
+      191 │     const bg = await import('../cli/bg.js');
+          ╵                             ~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../cli/handlers/templateJobs.js"
+
+    ../../../src/entrypoints/cli.tsx:216:21:
+      216 │     } = await import('../cli/handlers/templateJobs.js');
+          ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../environment-runner/main.js"
+
+    ../../../src/entrypoints/cli.tsx:230:21:
+      230 │     } = await import('../environment-runner/main.js');
+          ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../self-hosted-runner/main.js"
+
+    ../../../src/entrypoints/cli.tsx:242:21:
+      242 │     } = await import('../self-hosted-runner/main.js');
+          ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/compact/cachedMCConfig.js"
+
+    ../../../src/constants/prompts.ts:68:14:
+      68 │       require('../services/compact/cachedMCConfig.js') as typeof i...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./sdk/runtimeTypes.js"
+
+    ../../../src/entrypoints/agentSdkTypes.ts:26:14:
+      26 │ export * from './sdk/runtimeTypes.js'
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./sdk/toolTypes.js"
+
+    ../../../src/entrypoints/agentSdkTypes.ts:31:14:
+      31 │ export * from './sdk/toolTypes.js'
+         ╵               ~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../tools/DiscoverSkillsTool/prompt.js"
+
+    ../../../src/constants/prompts.ts:90:14:
+      90 │       require('../tools/DiscoverSkillsTool/prompt.js') as typeof i...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/skillSearch/featureCheck.js"
+
+    ../../../src/constants/prompts.ts:96:13:
+      96 │   ? (require('../services/skillSearch/featureCheck.js') as typeof ...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./coreTypes.generated.js"
+
+    ../../../src/entrypoints/sdk/coreTypes.ts:19:14:
+      19 │ export * from './coreTypes.generated.js'
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../types/connectorText.js"
+
+    ../../../src/services/api/claude.ts:44:7:
+      44 │ } from '../../types/connectorText.js'
+         ╵        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../coordinator/workerAgent.js"
+
+    ../../../src/tools/AgentTool/builtInAgents.ts:39:16:
+      39 │         require('../../coordinator/workerAgent.js') as typeof impo...
+         ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../compact/cachedMicrocompact.js"
+
+    ../../../src/services/api/claude.ts:1195:21:
+      1195 │     } = await import('../compact/cachedMicrocompact.js')
+           ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./cachedMicrocompact.js"
+
+    ../../../src/services/compact/microCompact.ts:66:34:
+      66 │     cachedMCModule = await import('./cachedMicrocompact.js')
+         ╵                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../SendUserFileTool/prompt.js"
+
+    ../../../src/tools/ToolSearchTool/prompt.ts:17:14:
+      17 │       require('../SendUserFileTool/prompt.js') as typeof import('....
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./assistant/gate.js"
+
+    ../../../src/main.tsx:81:47:
+      81 │ ...('KAIROS') ? require('./assistant/gate.js') as typeof import('....
+         ╵                         ~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./server/parseConnectUrl.js"
+
+    ../../../src/main.tsx:619:23:
+      619 │       } = await import('./server/parseConnectUrl.js');
+          ╵                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./components/agents/SnapshotUpdateDialog.js"
+
+    ../../../src/main.tsx:2268:27:
+      2268 │ ...} = await import('./components/agents/SnapshotUpdateDialog.js');
+           ╵                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./ssh/createSSHSession.js"
+
+    ../../../src/main.tsx:3203:23:
+      3203 │       } = await import('./ssh/createSSHSession.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./assistant/sessionDiscovery.js"
+
+    ../../../src/main.tsx:3266:23:
+      3266 │       } = await import('./assistant/sessionDiscovery.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../skills/mcpSkills.js"
+
+    ../../../src/services/mcp/client.ts:119:14:
+      119 │       require('../../skills/mcpSkills.js') as typeof import('../....
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/contextCollapse/index.js"
+
+    ../../../src/utils/analyzeContext.ts:1122:14:
+      1122 │       require('../services/contextCollapse/index.js') as typeof ...
+           ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../tools/WorkflowTool/constants.js"
+
+    ../../../src/constants/tools.ts:29:35:
+      29 │ ...t { WORKFLOW_TOOL_NAME } from '../tools/WorkflowTool/constants.js'
+         ╵                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/skillSearch/featureCheck.js"
+
+    ../../../src/utils/attachments.ts:98:16:
+      98 │ ...   require('../services/skillSearch/featureCheck.js') as typeof...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/skillSearch/prefetch.js"
+
+    ../../../src/utils/attachments.ts:100:16:
+      100 │         require('../services/skillSearch/prefetch.js') as typeof ...
+          ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/sessionTranscript/sessionTranscript.js"
+
+    ../../../src/utils/attachments.ts:207:13:
+      207 │   ? (require('../services/sessionTranscript/sessionTranscript.js'...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./yolo-classifier-prompts/auto_mode_system_prompt.txt"
+
+    ../../../src/utils/permissions/yoloClassifier.ts:55:23:
+      55 │ ...e(require('./yolo-classifier-prompts/auto_mode_system_prompt.tx...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./yolo-classifier-prompts/permissions_external.txt"
+
+    ../../../src/utils/permissions/yoloClassifier.ts:62:23:
+      62 │ ...ire(require('./yolo-classifier-prompts/permissions_external.txt'))
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./yolo-classifier-prompts/permissions_anthropic.txt"
+
+    ../../../src/utils/permissions/yoloClassifier.ts:67:25:
+      67 │ ...re(require('./yolo-classifier-prompts/permissions_anthropic.txt'))
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../types/connectorText.js"
+
+    ../../../src/utils/messages.ts:40:37:
+      40 │ import { isConnectorTextBlock } from '../types/connectorText.js'
+         ╵                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../global.d.ts"
+
+    ../../../src/ink/components/Box.tsx:2:7:
+      2 │ import '../global.d.ts';
+        ╵        ~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/TerminalCaptureTool/prompt.js"
+
+    ../../../src/utils/permissions/classifierDecision.ts:29:14:
+      29 │ ...  require('../../tools/TerminalCaptureTool/prompt.js') as typeo...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/OverflowTestTool/OverflowTestTool.js"
+
+    ../../../src/utils/permissions/classifierDecision.ts:34:14:
+      34 │ ...  require('../../tools/OverflowTestTool/OverflowTestTool.js') a...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/VerifyPlanExecutionTool/constants.js"
+
+    ../../../src/utils/permissions/classifierDecision.ts:40:16:
+      40 │ ...  require('../../tools/VerifyPlanExecutionTool/constants.js') a...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/WorkflowTool/constants.js"
+
+    ../../../src/utils/permissions/classifierDecision.ts:45:14:
+      45 │       require('../../tools/WorkflowTool/constants.js') as typeof i...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./memoryShapeTelemetry.js"
+
+    ../../../src/memdir/findRelevantMemories.ts:69:14:
+      69 │       require('./memoryShapeTelemetry.js') as typeof import('./mem...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/remoteControlServer/index.js"
+
+    ../../../src/commands.ts:78:14:
+      78 │     ? require('./commands/remoteControlServer/index.js').default
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../tools/SnipTool/prompt.js"
+
+    ../../../src/utils/collapseReadSearch.ts:39:14:
+      39 │       require('../tools/SnipTool/prompt.js') as typeof import('../...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/force-snip.js"
+
+    ../../../src/commands.ts:84:12:
+      84 │   ? require('./commands/force-snip.js').default
+         ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/workflows/index.js"
+
+    ../../../src/commands.ts:88:14:
+      88 │       require('./commands/workflows/index.js') as typeof import('....
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./services/skillSearch/localSearch.js"
+
+    ../../../src/commands.ts:98:14:
+      98 │       require('./services/skillSearch/localSearch.js') as typeof i...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/subscribe-pr.js"
+
+    ../../../src/commands.ts:102:12:
+      102 │   ? require('./commands/subscribe-pr.js').default
+          ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/torch.js"
+
+    ../../../src/commands.ts:107:41:
+      107 │ ... feature('TORCH') ? require('./commands/torch.js').default : null
+          ╵                                ~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/peers/index.js"
+
+    ../../../src/commands.ts:110:14:
+      110 │       require('./commands/peers/index.js') as typeof import('./co...
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./server/server.js"
+
+    ../../../src/main.tsx:3976:23:
+      3976 │       } = await import('./server/server.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../utils/systemThemeWatcher.js"
+
+    ../../../src/components/design-system/ThemeProvider.tsx:69:18:
+      69 │       void import('../../utils/systemThemeWatcher.js').then(({
+         ╵                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/fork/index.js"
+
+    ../../../src/commands.ts:115:14:
+      115 │       require('./commands/fork/index.js') as typeof import('./com...
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/buddy/index.js"
+
+    ../../../src/commands.ts:120:14:
+      120 │       require('./commands/buddy/index.js') as typeof import('./co...
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/WorkflowTool/createWorkflowCommand.js"
+
+    ../../../src/commands.ts:403:14:
+      403 │ ...  require('./tools/WorkflowTool/createWorkflowCommand.js') as ...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./server/sessionManager.js"
+
+    ../../../src/main.tsx:3979:23:
+      3979 │       } = await import('./server/sessionManager.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./server/backends/dangerousBackend.js"
+
+    ../../../src/main.tsx:3982:23:
+      3982 │       } = await import('./server/backends/dangerousBackend.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./attributionTrailer.js"
+
+    ../../../src/utils/attribution.ts:384:45:
+      384 │ ...nst { buildPRTrailers } = await import('./attributionTrailer.js')
+          ╵                                           ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../utils/ultraplan/prompt.txt"
+
+    ../../../src/commands/ultraplan.tsx:46:27:
+      46 │ const _rawPrompt = require('../utils/ultraplan/prompt.txt');
+         ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/TungstenTool/TungstenTool.js"
+
+    ../../../src/tools.ts:60:29:
+      60 │ import { TungstenTool } from './tools/TungstenTool/TungstenTool.js'
+         ╵                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../contextCollapse/index.js"
+
+    ../../../src/services/compact/autoCompact.ts:218:14:
+      218 │       require('../contextCollapse/index.js') as typeof import('.....
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../memdir/memoryShapeTelemetry.js"
+
+    ../../../src/utils/sessionFileAccessHooks.ts:39:13:
+      39 │   ? (require('../memdir/memoryShapeTelemetry.js') as typeof import...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./server/serverBanner.js"
+
+    ../../../src/main.tsx:3985:23:
+      3985 │       } = await import('./server/serverBanner.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./server/serverLog.js"
+
+    ../../../src/main.tsx:3988:23:
+      3988 │       } = await import('./server/serverLog.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./server/lockfile.js"
+
+    ../../../src/main.tsx:3993:23:
+      3993 │       } = await import('./server/lockfile.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./server/connectHeadless.js"
+
+    ../../../src/main.tsx:4091:23:
+      4091 │       } = await import('./server/connectHeadless.js');
+           ╵                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../tools/SendUserFileTool/prompt.js"
+
+    ../../../src/utils/conversationRecovery.ts:69:14:
+      69 │       require('../tools/SendUserFileTool/prompt.js') as typeof imp...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../sessionTranscript/sessionTranscript.js"
+
+    ../../../src/services/compact/compact.ts:7:13:
+      7 │   ? (require('../sessionTranscript/sessionTranscript.js') as typeof...
+        ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../contextCollapse/index.js"
+
+    ../../../src/services/compact/postCompactCleanup.ts:46:16:
+      46 │         require('../contextCollapse/index.js') as typeof import('....
+         ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../utils/attributionHooks.js"
+
+    ../../../src/services/compact/postCompactCleanup.ts:72:16:
+      72 │     void import('../../utils/attributionHooks.js').then(m =>
+         ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../global.d.ts"
+
+    ../../../src/ink/components/ScrollBox.tsx:8:7:
+      8 │ import '../global.d.ts';
+        ╵        ~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../types/connectorText.js"
+
+    ../../../src/components/Message.tsx:10:62:
+      10 │ ...extBlock, isConnectorTextBlock } from '../types/connectorText.js';
+         ╵                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tasks/MonitorMcpTask/MonitorMcpTask.js"
+
+    ../../../src/tools/AgentTool/runAgent.ts:851:16:
+      851 │ ...  require('../../tasks/MonitorMcpTask/MonitorMcpTask.js') as t...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/REPLTool/REPLTool.js"
+
+    ../../../src/tools.ts:18:14:
+      18 │     ? require('./tools/REPLTool/REPLTool.js').REPLTool
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/SuggestBackgroundPRTool/SuggestBackgroundPRTool.js"
+
+    ../../../src/tools.ts:22:14:
+      22 │ ...? require('./tools/SuggestBackgroundPRTool/SuggestBackgroundPRT...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/SleepTool/SleepTool.js"
+
+    ../../../src/tools.ts:27:14:
+      27 │     ? require('./tools/SleepTool/SleepTool.js').SleepTool
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/MonitorTool/MonitorTool.js"
+
+    ../../../src/tools.ts:40:12:
+      40 │   ? require('./tools/MonitorTool/MonitorTool.js').MonitorTool
+         ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/SendUserFileTool/SendUserFileTool.js"
+
+    ../../../src/tools.ts:43:12:
+      43 │   ? require('./tools/SendUserFileTool/SendUserFileTool.js').SendUs...
+         ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/PushNotificationTool/PushNotificationTool.js"
+
+    ../../../src/tools.ts:47:14:
+      47 │     ? require('./tools/PushNotificationTool/PushNotificationTool.js')
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/SubscribePRTool/SubscribePRTool.js"
+
+    ../../../src/tools.ts:51:12:
+      51 │   ? require('./tools/SubscribePRTool/SubscribePRTool.js').Subscrib...
+         ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/VerifyPlanExecutionTool/VerifyPlanExecutionTool.js"
+
+    ../../../src/tools.ts:93:14:
+      93 │ ...? require('./tools/VerifyPlanExecutionTool/VerifyPlanExecutionT...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./messages/SnipBoundaryMessage.js"
+
+    ../../../src/components/Message.tsx:259:27:
+      259 │               t2 = require("./messages/SnipBoundaryMessage.js");
+          ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../services/contextCollapse/operations.js"
+
+    ../../../src/commands/context/context-noninteractive.ts:53:14:
+      53 │ ...  require('../../services/contextCollapse/operations.js') as ty...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../services/contextCollapse/index.js"
+
+    ../../../src/commands/context/context-noninteractive.ts:116:14:
+      116 │       require('../../services/contextCollapse/index.js') as typeo...
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/OverflowTestTool/OverflowTestTool.js"
+
+    ../../../src/tools.ts:108:12:
+      108 │   ? require('./tools/OverflowTestTool/OverflowTestTool.js').Overf...
+          ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/CtxInspectTool/CtxInspectTool.js"
+
+    ../../../src/tools.ts:111:12:
+      111 │   ? require('./tools/CtxInspectTool/CtxInspectTool.js').CtxInspec...
+          ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/TerminalCaptureTool/TerminalCaptureTool.js"
+
+    ../../../src/tools.ts:114:12:
+      114 │   ? require('./tools/TerminalCaptureTool/TerminalCaptureTool.js')
+          ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/WebBrowserTool/WebBrowserTool.js"
+
+    ../../../src/tools.ts:118:12:
+      118 │   ? require('./tools/WebBrowserTool/WebBrowserTool.js').WebBrowse...
+          ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/SnipTool/SnipTool.js"
+
+    ../../../src/tools.ts:124:12:
+      124 │   ? require('./tools/SnipTool/SnipTool.js').SnipTool
+          ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/ListPeersTool/ListPeersTool.js"
+
+    ../../../src/tools.ts:127:12:
+      127 │   ? require('./tools/ListPeersTool/ListPeersTool.js').ListPeersTool
+          ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/WorkflowTool/bundled/index.js"
+
+    ../../../src/tools.ts:131:14:
+      131 │       require('./tools/WorkflowTool/bundled/index.js').initBundle...
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tools/WorkflowTool/WorkflowTool.js"
+
+    ../../../src/tools.ts:132:21:
+      132 │ ...turn require('./tools/WorkflowTool/WorkflowTool.js').WorkflowTool
+          ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./components/agents/SnapshotUpdateDialog.js"
+
+    ../../../src/dialogLaunchers.tsx:36:19:
+      36 │   } = await import('./components/agents/SnapshotUpdateDialog.js');
+         ╵                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./assistant/AssistantSessionChooser.js"
+
+    ../../../src/dialogLaunchers.tsx:63:19:
+      63 │   } = await import('./assistant/AssistantSessionChooser.js');
+         ╵                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./commands/assistant/assistant.js"
+
+    ../../../src/dialogLaunchers.tsx:77:19:
+      77 │   } = await import('./commands/assistant/assistant.js');
+         ╵                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../services/contextCollapse/operations.js"
+
+    ../../../src/commands/context/context.tsx:24:16:
+      24 │ ...= require('../../services/contextCollapse/operations.js') as ty...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./services/compact/reactiveCompact.js"
+
+    ../../../src/query.ts:16:13:
+      16 │   ? (require('./services/compact/reactiveCompact.js') as typeof im...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./services/contextCollapse/index.js"
+
+    ../../../src/query.ts:19:13:
+      19 │   ? (require('./services/contextCollapse/index.js') as typeof impo...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./services/skillSearch/prefetch.js"
+
+    ../../../src/query.ts:67:13:
+      67 │   ? (require('./services/skillSearch/prefetch.js') as typeof impor...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./jobs/classifier.js"
+
+    ../../../src/query.ts:70:13:
+      70 │   ? (require('./jobs/classifier.js') as typeof import('./jobs/clas...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./devtools.js"
+
+    ../../../src/ink/reconciler.ts:36:16:
+      36 │     void import('./devtools.js')
+         ╵                 ~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./UserGitHubWebhookMessage.js"
+
+    ../../../src/components/messages/UserTextMessage.tsx:97:21:
+      97 │         t1 = require("./UserGitHubWebhookMessage.js");
+         ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./UserForkBoilerplateMessage.js"
+
+    ../../../src/components/messages/UserTextMessage.tsx:194:21:
+      194 │         t1 = require("./UserForkBoilerplateMessage.js");
+          ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./UserCrossSessionMessage.js"
+
+    ../../../src/components/messages/UserTextMessage.tsx:218:21:
+      218 │         t1 = require("./UserCrossSessionMessage.js");
+          ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../bridge/peerSessions.js"
+
+    ../../../src/tools/SendMessageTool/SendMessageTool.ts:759:20:
+      759 │ ...        require('../../bridge/peerSessions.js') as typeof impo...
+          ╵                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../utils/udsClient.js"
+
+    ../../../src/tools/SendMessageTool/SendMessageTool.ts:778:20:
+      778 │             require('../../utils/udsClient.js') as typeof import(...
+          ╵                     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./dream.js"
+
+    ../../../src/skills/bundled/index.ts:37:43:
+      37 │     const { registerDreamSkill } = require('./dream.js')
+         ╵                                            ~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./hunter.js"
+
+    ../../../src/skills/bundled/index.ts:43:44:
+      43 │     const { registerHunterSkill } = require('./hunter.js')
+         ╵                                             ~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./runSkillGenerator.js"
+
+    ../../../src/skills/bundled/index.ts:75:55:
+      75 │ ...gisterRunSkillGeneratorSkill } = require('./runSkillGenerator.js')
+         ╵                                             ~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/csharp/claude-api.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:4:28:
+      4 │ import csharpClaudeApi from './claude-api/csharp/claude-api.md'
+        ╵                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/curl/examples.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:5:25:
+      5 │ import curlExamples from './claude-api/curl/examples.md'
+        ╵                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./utils/taskSummary.js"
+
+    ../../../src/query.ts:119:13:
+      119 │   ? (require('./utils/taskSummary.js') as typeof import('./utils/...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./verify/examples/cli.md"
+
+    ../../../src/skills/bundled/verifyContent.ts:4:18:
+      4 │ import cliMd from './verify/examples/cli.md'
+        ╵                   ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/go/claude-api.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:6:24:
+      6 │ import goClaudeApi from './claude-api/go/claude-api.md'
+        ╵                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./verify/examples/server.md"
+
+    ../../../src/skills/bundled/verifyContent.ts:5:21:
+      5 │ import serverMd from './verify/examples/server.md'
+        ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./verify/SKILL.md"
+
+    ../../../src/skills/bundled/verifyContent.ts:6:20:
+      6 │ import skillMd from './verify/SKILL.md'
+        ╵                     ~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../skills/mcpSkills.js"
+
+    ../../../src/services/mcp/useManageMCPConnections.ts:24:14:
+      24 │       require('../../skills/mcpSkills.js') as typeof import('../.....
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../skillSearch/localSearch.js"
+
+    ../../../src/services/mcp/useManageMCPConnections.ts:29:14:
+      29 │       require('../skillSearch/localSearch.js') as typeof import('....
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./WorkflowDetailDialog.js"
+
+    ../../../src/components/tasks/BackgroundTasksDialog.tsx:109:68:
+      109 │ ...IPTS') ? (require('./WorkflowDetailDialog.js') as typeof impor...
+          ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tasks/MonitorMcpTask/MonitorMcpTask.js"
+
+    ../../../src/components/tasks/BackgroundTasksDialog.tsx:117:59:
+      117 │ ...? require('../../tasks/MonitorMcpTask/MonitorMcpTask.js') as t...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./services/contextCollapse/index.js"
+
+    ../../../src/setup.ts:298:16:
+      298 │         require('./services/contextCollapse/index.js') as typeof ...
+          ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./utils/attributionHooks.js"
+
+    ../../../src/setup.ts:355:20:
+      355 │         void import('./utils/attributionHooks.js').then(
+          ╵                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/contextCollapse/index.js"
+
+    ../../../src/components/ContextVisualization.tsx:32:20:
+      32 │ ... } = require("../services/contextCollapse/index.js") as typeof ...
+         ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/contextCollapse/persist.js"
+
+    ../../../src/utils/sessionRestore.ts:130:14:
+      130 │       require('../services/contextCollapse/persist.js') as typeof...
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../services/compact/reactiveCompact.js"
+
+    ../../../src/commands/compact/compact.ts:36:13:
+      36 │   ? (require('../../services/compact/reactiveCompact.js') as typeo...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/TungstenTool/TungstenTool.js"
+
+    ../../../src/commands/clear/caches.ts:96:16:
+      96 │     void import('../../tools/TungstenTool/TungstenTool.js').then(
+         ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../utils/attributionHooks.js"
+
+    ../../../src/commands/clear/caches.ts:106:16:
+      106 │     void import('../../utils/attributionHooks.js').then(
+          ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/java/claude-api.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:7:26:
+      7 │ import javaClaudeApi from './claude-api/java/claude-api.md'
+        ╵                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/php/claude-api.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:8:25:
+      8 │ import phpClaudeApi from './claude-api/php/claude-api.md'
+        ╵                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/python/agent-sdk/patterns.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:9:35:
+      9 │ ...onAgentSdkPatterns from './claude-api/python/agent-sdk/patterns.md'
+        ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/python/agent-sdk/README.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:10:33:
+      10 │ ...ythonAgentSdkReadme from './claude-api/python/agent-sdk/README.md'
+         ╵                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/python/claude-api/batches.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:11:35:
+      11 │ ...nClaudeApiBatches from './claude-api/python/claude-api/batches.md'
+         ╵                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/python/claude-api/files-api.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:12:36:
+      12 │ ...audeApiFilesApi from './claude-api/python/claude-api/files-api.md'
+         ╵                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/python/claude-api/README.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:13:34:
+      13 │ ...honClaudeApiReadme from './claude-api/python/claude-api/README.md'
+         ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/python/claude-api/streaming.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:14:37:
+      14 │ ...udeApiStreaming from './claude-api/python/claude-api/streaming.md'
+         ╵                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/python/claude-api/tool-use.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:15:35:
+      15 │ ...ClaudeApiToolUse from './claude-api/python/claude-api/tool-use.md'
+         ╵                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/ruby/claude-api.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:16:26:
+      16 │ import rubyClaudeApi from './claude-api/ruby/claude-api.md'
+         ╵                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/SKILL.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:17:24:
+      17 │ import skillPrompt from './claude-api/SKILL.md'
+         ╵                         ~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/shared/error-codes.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:18:29:
+      18 │ import sharedErrorCodes from './claude-api/shared/error-codes.md'
+         ╵                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/shared/live-sources.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:19:30:
+      19 │ import sharedLiveSources from './claude-api/shared/live-sources.md'
+         ╵                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/shared/models.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:20:25:
+      20 │ import sharedModels from './claude-api/shared/models.md'
+         ╵                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/shared/prompt-caching.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:21:32:
+      21 │ ...t sharedPromptCaching from './claude-api/shared/prompt-caching.md'
+         ╵                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/shared/tool-use-concepts.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:22:34:
+      22 │ ...redToolUseConcepts from './claude-api/shared/tool-use-concepts.md'
+         ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/typescript/agent-sdk/patterns.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:23:39:
+      23 │ ...ntSdkPatterns from './claude-api/typescript/agent-sdk/patterns.md'
+         ╵                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/typescript/agent-sdk/README.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:24:37:
+      24 │ ...tAgentSdkReadme from './claude-api/typescript/agent-sdk/README.md'
+         ╵                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/typescript/claude-api/batches.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:25:39:
+      25 │ ...udeApiBatches from './claude-api/typescript/claude-api/batches.md'
+         ╵                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/typescript/claude-api/files-api.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:26:40:
+      26 │ ...ApiFilesApi from './claude-api/typescript/claude-api/files-api.md'
+         ╵                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/typescript/claude-api/README.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:27:38:
+      27 │ ...laudeApiReadme from './claude-api/typescript/claude-api/README.md'
+         ╵                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/typescript/claude-api/streaming.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:28:41:
+      28 │ ...piStreaming from './claude-api/typescript/claude-api/streaming.md'
+         ╵                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./claude-api/typescript/claude-api/tool-use.md"
+
+    ../../../src/skills/bundled/claudeApiContent.ts:29:39:
+      29 │ ...deApiToolUse from './claude-api/typescript/claude-api/tool-use.md'
+         ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../services/skillSearch/remoteSkillState.js"
+
+    ../../../src/tools/SkillTool/SkillTool.ts:110:18:
+      110 │ ....(require('../../services/skillSearch/remoteSkillState.js') as...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../services/skillSearch/remoteSkillLoader.js"
+
+    ../../../src/tools/SkillTool/SkillTool.ts:111:18:
+      111 │ ....(require('../../services/skillSearch/remoteSkillLoader.js') a...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../services/skillSearch/telemetry.js"
+
+    ../../../src/tools/SkillTool/SkillTool.ts:112:18:
+      112 │ .....(require('../../services/skillSearch/telemetry.js') as typeo...
+          ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../services/skillSearch/featureCheck.js"
+
+    ../../../src/tools/SkillTool/SkillTool.ts:113:18:
+      113 │ ....(require('../../services/skillSearch/featureCheck.js') as typ...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./MonitorMcpDetailDialog.js"
+
+    ../../../src/components/tasks/BackgroundTasksDialog.tsx:119:66:
+      119 │ ...OOL') ? (require('./MonitorMcpDetailDialog.js') as typeof impo...
+          ╵                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tasks/LocalWorkflowTask/LocalWorkflowTask.js"
+
+    ../../../src/tasks.ts:10:12:
+      10 │   ? require('./tasks/LocalWorkflowTask/LocalWorkflowTask.js').Loca...
+         ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./tasks/MonitorMcpTask/MonitorMcpTask.js"
+
+    ../../../src/tasks.ts:13:12:
+      13 │   ? require('./tasks/MonitorMcpTask/MonitorMcpTask.js').MonitorMcp...
+         ╵             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../tools/TungstenTool/TungstenLiveMonitor.js"
+
+    ../../../src/screens/REPL.tsx:270:36:
+      270 │ ...iveMonitor } from '../tools/TungstenTool/TungstenLiveMonitor.js';
+          ╵                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../jobs/classifier.js"
+
+    ../../../src/query/stopHooks.ts:46:13:
+      46 │   ? (require('../jobs/classifier.js') as typeof import('../jobs/cl...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../tools/SendUserFileTool/prompt.js"
+
+    ../../../src/components/Messages.tsx:82:77:
+      82 │ ...) ? (require('../tools/SendUserFileTool/prompt.js') as typeof i...
+         ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../proactive/useProactive.js"
+
+    ../../../src/screens/REPL.tsx:198:73:
+      198 │ ...ROS') ? require('../proactive/useProactive.js').useProactive :...
+          ╵                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../tools/WebBrowserTool/WebBrowserPanel.js"
+
+    ../../../src/screens/REPL.tsx:272:68:
+      272 │ ...? require('../tools/WebBrowserTool/WebBrowserPanel.js') as typ...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../services/contextCollapse/index.js"
+
+    ../../../src/screens/REPL.tsx:3686:15:
+      3686 │       (require('../services/contextCollapse/index.js') as typeof...
+           ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./types.js"
+
+    ../../../src/utils/filePersistence/filePersistence.ts:37:7:
+      37 │ } from './types.js'
+         ╵        ~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/ReviewArtifactTool/ReviewArtifactTool.js"
+
+    ../../../src/components/permissions/PermissionRequest.tsx:36:65:
+      36 │ ... (require('../../tools/ReviewArtifactTool/ReviewArtifactTool.js...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.js"
+
+    ../../../src/components/permissions/PermissionRequest.tsx:37:78:
+      37 │ ... (require('./ReviewArtifactPermissionRequest/ReviewArtifactPerm...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/WorkflowTool/WorkflowTool.js"
+
+    ../../../src/components/permissions/PermissionRequest.tsx:38:60:
+      38 │ ...? (require('../../tools/WorkflowTool/WorkflowTool.js') as typeo...
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/WorkflowTool/WorkflowPermissionRequest.js"
+
+    ../../../src/components/permissions/PermissionRequest.tsx:39:73:
+      39 │ ... (require('../../tools/WorkflowTool/WorkflowPermissionRequest.j...
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "../../tools/MonitorTool/MonitorTool.js"
+
+    ../../../src/components/permissions/PermissionRequest.tsx:40:55:
+      40 │ ... ? (require('../../tools/MonitorTool/MonitorTool.js') as typeof...
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./MonitorPermissionRequest/MonitorPermissionRequest.js"
+
+    ../../../src/components/permissions/PermissionRequest.tsx:41:68:
+      41 │ ... (require('./MonitorPermissionRequest/MonitorPermissionRequest....
+         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+▲ [WARNING] The "&&" operator here will always return the left operand [suspicious-logical-operator]
+
+    ../../../src/components/PromptInput/PromptInput.tsx:297:67:
+      297 │ ...ate(s => "external" === 'ant' && s.tungstenActiveSession !== u...
+          ╵                                  ~~
+
+  The "=>" symbol creates an arrow function expression in JavaScript. Did you mean to use the greater-than-or-equal-to operator ">=" here instead?
+
+    ../../../src/components/PromptInput/PromptInput.tsx:297:43:
+      297 │ ...ngstenSession = useAppState(s => "external" === 'ant' && s.tun...
+          │                                  ~~
+          ╵                                  >=
+
+▲ [WARNING] The "&&" operator here will always return the left operand [suspicious-logical-operator]
+
+    ../../../src/components/PromptInput/PromptInputFooterLeftSide.tsx:263:65:
+      263 │ ...e(s_4 => "external" === 'ant' && s_4.tungstenActiveSession !==...
+          ╵                                  ~~
+
+  The "=>" symbol creates an arrow function expression in JavaScript. Did you mean to use the greater-than-or-equal-to operator ">=" here instead?
+
+    ../../../src/components/PromptInput/PromptInputFooterLeftSide.tsx:263:41:
+      263 │ ...TmuxSession = useAppState(s_4 => "external" === 'ant' && s_4.t...
+          │                                  ~~
+          ╵                                  >=
+
+✘ [ERROR] Could not resolve "../services/contextCollapse/index.js"
+
+    ../../../src/components/TokenWarning.tsx:28:17:
+      28 │     t1 = require("../services/contextCollapse/index.js");
+         ╵                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+2 warnings and 167 errors
+/root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:1748
+  let error = new Error(text);
+              ^
+
+Error: Build failed with 167 errors:
+../../../src/commands.ts:78:14: ERROR: Could not resolve "./commands/remoteControlServer/index.js"
+../../../src/commands.ts:84:12: ERROR: Could not resolve "./commands/force-snip.js"
+../../../src/commands.ts:88:14: ERROR: Could not resolve "./commands/workflows/index.js"
+../../../src/commands.ts:98:14: ERROR: Could not resolve "./services/skillSearch/localSearch.js"
+../../../src/commands.ts:102:12: ERROR: Could not resolve "./commands/subscribe-pr.js"
+...
+    at failureErrorWithLog (/root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:1748:15)
+    at /root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:1207:25
+    at runOnEndCallbacks (/root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:1588:45)
+    at buildResponseToResult (/root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:1205:7)
+    at /root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:1232:16
+    at responseCallbacks.<computed> (/root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:884:9)
+    at handleIncomingPacket (/root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:939:12)
+    at Socket.readFromStdout (/root/.openclaw/workspace/reverse-claude-code/research/experiments/min-compat/node_modules/esbuild/lib/main.js:862:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12) {
+  errors: [Getter/Setter],
+  warnings: [Getter/Setter]
+}
+
+Node.js v22.22.1

@@ -1,0 +1,4 @@
+axios: 2
+lodash-es/last.js: 1
+strip-ansi: 1
+lodash-es/sumBy.js: 1

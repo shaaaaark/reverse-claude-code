@@ -1,0 +1,437 @@
+# 命令注册骨架（初步）
+
+## src/main.tsx
+- L88: `import { filterCommandsForRemoteMode, getCommands } from './commands.js';`
+- L141: `import { registerMcpAddCommand } from 'src/commands/mcp/addCommand.js';`
+- L142: `import { registerMcpXaaIdpCommand } from 'src/commands/mcp/xaaIdpCommand.js';`
+- L152: `import { registerCleanup } from 'src/utils/cleanupRegistry.js';`
+- L155: `import { countConcurrentSessions, registerSession, updateSessionName } from 'src/utils/concurrentSessions.js';`
+- L315: `are_unsandboxed_commands_allowed: SandboxManager.areUnsandboxedCommandsAllowed(),`
+- L356: `* Git commands can execute arbitrary code via hooks and config (e.g., core.fsmonitor,`
+- L588: `// SECURITY: Prevent Windows from executing commands from current directory`
+- L599: `// In print mode, print.ts registers its own SIGINT handler that aborts`
+- L610: `// handles it, giving the full interactive TUI instead of a stripped-down subcommand.`
+- L611: `// For headless (-p), we rewrite to the internal `open` subcommand.`
+- L619: `} = await import('./server/parseConnectUrl.js');`
+- L623: `// Headless: rewrite to internal `open` subcommand`
+- L652: `} = await import('./utils/config.js');`
+- L657: `} = await import('./utils/deepLink/protocolHandler.js');`
+- L669: `} = await import('./utils/config.js');`
+- L673: `} = await import('./utils/deepLink/protocolHandler.js');`
+- L682: `// `claude -p "explain assistant"`. Root-flag-before-subcommand`
+- L891: `sortSubcommands: true;`
+- L896: `sortSubcommands: true,`
+- L902: `const program = new CommanderCommand().configureHelp(createSortedHelpConfig()).enablePositionalOptions();`
+- L907: `program.hook('preAction', async thisCommand => {`
+- L926: `// Attach logging sinks so subcommand handlers can use logEvent/logError.`
+- L929: `// subcommands (doctor, mcp, plugin, auth) never call setup() and would`
+- L933: `} = await import('./utils/sinks.js');`
+- L938: `// action reads it from its own options destructure, but subcommands`
+- L968: `program.name('claude').description(`Claude Code - starts an interactive session by default, use -p/--print for non-interactive output`).argument('[prompt]', 'Your prompt', String)`
+- L969: `// Subcommands inherit helpOption via commander's copyInheritedSettings —`
+- L970: `// setting it once here covers mcp, plugin, auth, and all other subcommands.`
+- L1006: `.option('--plugin-dir <path>', 'Load plugins from a directory for this session only (repeatable: --plugin-dir A --plugin-dir B)', (val: string, prev: string[]) => [...prev, val], [] as string[]).option('--disable-slash-c`
+- L1133: `// Extract disable slash commands flag`
+- L1481: `} = await import('src/utils/computerUse/common.js');`
+- L1612: `} = await import('src/utils/computerUse/gates.js');`
+- L1616: `} = await import('src/utils/computerUse/setup.js');`
+- L1636: `// inbound push notifications should register this session. The option`
+- L1802: `// overlap config I/O with setup(), commands loading, and trust dialog.`
+- L1875: `} = await import('./utils/toolPool.js');`
+- L1909: `} = await import('./setup.js');`
+- L1913: `// Parallelize setup() with commands+agents loading. setup()'s ~28ms is`
+- L1917: `// commands/agents need the post-chdir cwd.`
+- L1928: `const commandsPromise = worktreeEnabled ? null : getCommands(preSetupCwd);`
+- L1932: `commandsPromise?.catch(() => {});`
+- L2025: `logForDebugging('[STARTUP] Loading commands and agents...');`
+- L2026: `const commandsStart = Date.now();`
+- L2029: `const [commands, agentDefinitionsResult] = await Promise.all([commandsPromise ?? getCommands(currentCwd), agentDefsPromise ?? getAgentDefinitionsWithOverrides(currentCwd)]);`
+- L2030: `logForDebugging(`[STARTUP] Commands and agents loaded in ${Date.now() - commandsStart}ms`);`
+- L2031: `profileCheckpoint('action_commands_loaded');`
+- L2091: `// initialPrompt goes first so its slash command (if any) is processed;`
+- L2217: `// Show setup screens after commands are loaded`
+- L2228: `} = await import('./ink.js');`
+- L2241: `const onboardingShown = await showSetupScreens(root, permissionMode, allowDangerouslySkipPermissions, commands, enableClaudeInChrome, devChannels);`
+- L2249: `} = await import('./bridge/bridgeEnabled.js');`
+- L2268: `} = await import('./components/agents/SnapshotUpdateDialog.js');`
+- L2281: `// Keep in sync with the post-login logic in src/commands/login.tsx`
+- L2377: `void refreshExampleCommands(); // Pre-fetch example commands (runs git log, no API call)`
+- L2411: `commands: []`
+- L2416: `commands: []`
+- L2420: `commands: []`
+- L2429: `commands: uniqBy([...local.commands, ...claudeai.commands], 'name')`
+- L2455: `const mcpCommands: Awaited<typeof mcpPromise>['commands'] = [];`
+- L2493: `registerCleanup(async () => {`
+- L2528: `// REPL path registers — not subcommands like `claude doctor`. Chained:`
+- L2529: `// count must run after register's write completes or it misses our own file.`
+- L2530: `void registerSession().then(registered => {`
+- L2531: `if (!registered) return;`
+- L2620: `// Headless mode supports all prompt commands and some local commands`
+- L2622: `const commandsHeadless = disableSlashCommands ? [] : commands.filter(command => command.type === 'prompt' && !command.disableNonInteractive || command.type === 'local' && command.supportsNonInteractive);`
+- L2629: `commands: mcpCommands,`
+- L2707: `commands`
+- L2715: `commands: uniqBy([...prev.mcp.commands, ...commands], 'name')`
+- L2767: `commands,`
+- L2773: `commands = excludeCommandsByServer(commands, name);`
+- L2782: `commands,`
+- L2827: `} = await import('src/cli/print.js');`
+- L2829: `void runHeadless(inputPrompt, () => headlessStore.getState(), headlessStore.setState, commandsHeadless, tools, sdkMcpConfigs, agentDefinitions.activeAgents, {`
+- L2946: `commands: [],`
+- L2953: `commands: [],`
+- L3073: `commands: [...commands, ...mcpCommands],`
+- L3110: `} = await import('./commands/clear/caches.js');`
+- L3182: `commands,`
+- L3203: `} = await import('./ssh/createSSHSession.js');`
+- L3248: `commands,`
+- L3266: `} = await import('./assistant/sessionDiscovery.js');`
+- L3314: `} = await import('./utils/auth.js');`
+- L3337: `const remoteCommands = filterCommandsForRemoteMode(commands);`
+- L3344: `commands: remoteCommands,`
+- L3361: `} = await import('./commands/clear/caches.js');`
+- L3465: `} = await import('./utils/auth.js');`
+- L3484: `// Pre-filter commands to only include remote-safe ones.`
+- L3486: `const remoteCommands = filterCommandsForRemoteMode(commands);`
+- L3493: `commands: remoteCommands,`
+- L3563: `} = await import('./components/TeleportProgress.js');`
+- L3587: `} = await import('./utils/ccshareResume.js');`
+- L3811: `program.option('-w, --worktree [name]', 'Create a new git worktree for this session (optionally specify a name)');`
+- L3812: `program.option('--tmux', 'Create a tmux session for the worktree (requires --worktree). Uses iTerm2 native panes when available; use --tmux=classic for traditional tmux.');`
+- L3814: `program.addOption(new Option('--advisor <model>', 'Enable the server-side advisor tool with the specified model (alias or full ID).').hideHelp());`
+- L3817: `program.addOption(new Option('--delegate-permissions', '[ANT-ONLY] Alias for --permission-mode auto.').implies({`
+- L3820: `program.addOption(new Option('--dangerously-skip-permissions-with-classifiers', '[ANT-ONLY] Deprecated alias for --permission-mode auto.').hideHelp().implies({`
+- L3823: `program.addOption(new Option('--afk', '[ANT-ONLY] Deprecated alias for --permission-mode auto.').hideHelp().implies({`
+- L3826: `program.addOption(new Option('--tasks [id]', '[ANT-ONLY] Tasks mode: watch for tasks and auto-process them. Optional id is used as both the task list ID and agent ID (defaults to "tasklist").').argParser(String).hideHelp`
+- L3827: `program.option('--agent-teams', '[ANT-ONLY] Force Claude to use multi-agent mode for solving problems', () => true);`
+- L3830: `program.addOption(new Option('--enable-auto-mode', 'Opt in to auto mode').hideHelp());`
+- L3833: `program.addOption(new Option('--proactive', 'Start in proactive autonomous mode'));`
+- L3836: `program.addOption(new Option('--messaging-socket-path <path>', 'Unix domain socket path for the UDS messaging server (defaults to a tmp path)'));`
+- L3839: `program.addOption(new Option('--brief', 'Enable SendUserMessage tool for agent-to-user communication'));`
+- L3842: `program.addOption(new Option('--assistant', 'Force assistant mode (Agent SDK daemon use)').hideHelp());`
+- L3845: `program.addOption(new Option('--channels <servers...>', 'MCP servers whose channel notifications (inbound push) should register this session. Space-separated server names.').hideHelp());`
+- L3846: `program.addOption(new Option('--dangerously-load-development-channels <servers...>', 'Load channel servers not on the approved allowlist. For local channel development only. Shows a confirmation dialog at startup.').hide`
+- L3851: `program.addOption(new Option('--agent-id <id>', 'Teammate agent ID').hideHelp());`
+- L3852: `program.addOption(new Option('--agent-name <name>', 'Teammate display name').hideHelp());`
+- L3853: `program.addOption(new Option('--team-name <name>', 'Team name for swarm coordination').hideHelp());`
+- L3854: `program.addOption(new Option('--agent-color <color>', 'Teammate UI color').hideHelp());`
+- L3855: `program.addOption(new Option('--plan-mode-required', 'Require plan mode before implementation').hideHelp());`
+- L3856: `program.addOption(new Option('--parent-session-id <id>', 'Parent session ID for analytics correlation').hideHelp());`
+- L3857: `program.addOption(new Option('--teammate-mode <mode>', 'How to spawn teammates: "tmux", "in-process", or "auto"').choices(['auto', 'tmux', 'in-process']).hideHelp());`
+- L3858: `program.addOption(new Option('--agent-type <type>', 'Custom agent type for this teammate').hideHelp());`
+- L3861: `program.addOption(new Option('--sdk-url <url>', 'Use remote WebSocket endpoint for SDK I/O streaming (only with -p and stream-json format)').hideHelp());`
+- L3864: `program.addOption(new Option('--teleport [session]', 'Resume a teleport session, optionally specify session ID').hideHelp());`
+- L3865: `program.addOption(new Option('--remote [description]', 'Create a remote session with the given description').hideHelp());`
+- L3867: `program.addOption(new Option('--remote-control [name]', 'Start an interactive session with Remote Control enabled (optionally named)').argParser(value => value || true).hideHelp());`
+- L3868: `program.addOption(new Option('--rc [name]', 'Alias for --remote-control').argParser(value => value || true).hideHelp());`
+- L3871: `program.addOption(new Option('--hard-fail', 'Crash on logError calls instead of silently logging').hideHelp());`
+- L3875: `// -p/--print mode: skip subcommand registration. The 52 subcommands`
+- L3878: `// default action. The subcommand registration path was measured at ~65ms`
+- L3887: `await program.parseAsync(process.argv);`
+- L3894: `const mcp = program.command('mcp').description('Configure and manage MCP servers').configureHelp(createSortedHelpConfig()).enablePositionalOptions();`
+- L3895: `mcp.command('serve').description(`Start the Claude Code MCP server`).option('-d, --debug', 'Enable debug mode', () => true).option('--verbose', 'Override verbose mode setting from config', () => true).action(async ({`
+- L3904: `} = await import('./cli/handlers/mcp.js');`
+- L3911: `// Register the mcp add subcommand (extracted for testability)`
+- L3912: `registerMcpAddCommand(mcp);`
+- L3914: `registerMcpXaaIdpCommand(mcp);`
+- L3916: `mcp.command('remove <name>').description('Remove an MCP server').option('-s, --scope <scope>', 'Configuration scope (local, user, or project) - if not specified, removes from whichever scope it exists in').action(async (`
+- L3921: `} = await import('./cli/handlers/mcp.js');`
+- L3924: `mcp.command('list').description('List configured MCP servers. Note: The workspace trust dialog is skipped and stdio servers from .mcp.json are spawned for health checks. Only use this command in directories you trust.').`
+- L3927: `} = await import('./cli/handlers/mcp.js');`
+- L3930: `mcp.command('get <name>').description('Get details about an MCP server. Note: The workspace trust dialog is skipped and stdio servers from .mcp.json are spawned for health checks. Only use this command in directories you`
+- L3933: `} = await import('./cli/handlers/mcp.js');`
+- L3936: `mcp.command('add-json <name> <json>').description('Add an MCP server (stdio or SSE) with a JSON string').option('-s, --scope <scope>', 'Configuration scope (local, user, or project)', 'local').option('--client-secret', '`
+- L3942: `} = await import('./cli/handlers/mcp.js');`
+- L3945: `mcp.command('add-from-claude-desktop').description('Import MCP servers from Claude Desktop (Mac and WSL only)').option('-s, --scope <scope>', 'Configuration scope (local, user, or project)', 'local').action(async (option`
+- L3950: `} = await import('./cli/handlers/mcp.js');`
+- L3953: `mcp.command('reset-project-choices').description('Reset all approved and rejected project-scoped (.mcp.json) servers within this project').action(async () => {`
+- L3956: `} = await import('./cli/handlers/mcp.js');`
+- L3962: `program.command('server').description('Start a Claude Code session server').option('--port <number>', 'HTTP port', '0').option('--host <string>', 'Bind address', '0.0.0.0').option('--auth-token <token>', 'Bearer token fo`
+- L3973: `} = await import('crypto');`
+- L3976: `} = await import('./server/server.js');`
+- L3979: `} = await import('./server/sessionManager.js');`
+- L3982: `} = await import('./server/backends/dangerousBackend.js');`
+- L3985: `} = await import('./server/serverBanner.js');`
+- L3988: `} = await import('./server/serverLog.js');`
+- L3993: `} = await import('./server/lockfile.js');`
+- L4040: `// `claude ssh <host> [dir]` — registered here only so --help shows it.`
+- L4046: `program.command('ssh <host> [dir]').description('Run Claude Code on a remote host over SSH. Deploys the binary and ' + 'tunnels API auth back through your local machine — no remote setup needed.').option('--permission-mo`
+- L4055: `// claude connect — subcommand only handles -p (headless) mode.`
+- L4059: `program.command('open <cc-url>').description('Connect to a Claude Code server (internal — use cc:// URLs)').option('-p, --print [prompt]', 'Print mode (headless)').option('--output-format <format>', 'Output format: text,`
+- L4065: `} = await import('./server/parseConnectUrl.js');`
+- L4091: `} = await import('./server/connectHeadless.js');`
+- L4100: `const auth = program.command('auth').description('Manage authentication').configureHelp(createSortedHelpConfig());`
+- L4101: `auth.command('login').description('Sign in to your Anthropic account').option('--email <email>', 'Pre-populate email address on the login page').option('--sso', 'Force SSO login flow').option('--console', 'Use Anthropic `
+- L4114: `} = await import('./cli/handlers/auth.js');`
+- L4122: `auth.command('status').description('Show authentication status').option('--json', 'Output as JSON (default)').option('--text', 'Output as human-readable text').action(async (opts: {`
+- L4128: `} = await import('./cli/handlers/auth.js');`
+- L4131: `auth.command('logout').description('Log out from your Anthropic account').action(async () => {`
+- L4134: `} = await import('./cli/handlers/auth.js');`
+- L4144: `// Hidden flag on all plugin/marketplace subcommands to target cowork_plugins.`
+- L4148: `const pluginCmd = program.command('plugin').alias('plugins').description('Manage Claude Code plugins').configureHelp(createSortedHelpConfig());`
+- L4149: `pluginCmd.command('validate <path>').description('Validate a plugin or marketplace manifest').addOption(coworkOption()).action(async (manifestPath: string, options: {`
+- L4154: `} = await import('./cli/handlers/plugins.js');`
+- L4159: `pluginCmd.command('list').description('List installed plugins').option('--json', 'Output as JSON').option('--available', 'Include available plugins from marketplaces (requires --json)').addOption(coworkOption()).action(a`
+- L4166: `} = await import('./cli/handlers/plugins.js');`
+- L4170: `// Marketplace subcommands`
+- L4171: `const marketplaceCmd = pluginCmd.command('marketplace').description('Manage Claude Code marketplaces').configureHelp(createSortedHelpConfig());`
+- L4172: `marketplaceCmd.command('add <source>').description('Add a marketplace from a URL, path, or GitHub repo').addOption(coworkOption()).option('--sparse <paths...>', 'Limit checkout to specific directories via git sparse-chec`
+- L4179: `} = await import('./cli/handlers/plugins.js');`
+- L4182: `marketplaceCmd.command('list').description('List all configured marketplaces').option('--json', 'Output as JSON').addOption(coworkOption()).action(async (options: {`
+- L4188: `} = await import('./cli/handlers/plugins.js');`
+- L4191: `marketplaceCmd.command('remove <name>').alias('rm').description('Remove a configured marketplace').addOption(coworkOption()).action(async (name: string, options: {`
+- L4196: `} = await import('./cli/handlers/plugins.js');`
+- L4199: `marketplaceCmd.command('update [name]').description('Update marketplace(s) from their source - updates all if no name specified').addOption(coworkOption()).action(async (name: string | undefined, options: {`
+- L4204: `} = await import('./cli/handlers/plugins.js');`
+- L4209: `pluginCmd.command('install <plugin>').alias('i').description('Install a plugin from available marketplaces (use plugin@marketplace for specific marketplace)').option('-s, --scope <scope>', 'Installation scope: user, proj`
+- L4215: `} = await import('./cli/handlers/plugins.js');`
+- L4220: `pluginCmd.command('uninstall <plugin>').alias('remove').alias('rm').description('Uninstall an installed plugin').option('-s, --scope <scope>', 'Uninstall from scope: user, project, or local', 'user').option('--keep-data'`
+- L4227: `} = await import('./cli/handlers/plugins.js');`
+- L4232: `pluginCmd.command('enable <plugin>').description('Enable a disabled plugin').option('-s, --scope <scope>', `Installation scope: ${VALID_INSTALLABLE_SCOPES.join(', ')} (default: auto-detect)`).addOption(coworkOption()).ac`
+- L4238: `} = await import('./cli/handlers/plugins.js');`
+- L4243: `pluginCmd.command('disable [plugin]').description('Disable an enabled plugin').option('-a, --all', 'Disable all enabled plugins').option('-s, --scope <scope>', `Installation scope: ${VALID_INSTALLABLE_SCOPES.join(', ')} `
+- L4250: `} = await import('./cli/handlers/plugins.js');`
+- L4255: `pluginCmd.command('update <plugin>').description('Update a plugin to the latest version (restart required to apply)').option('-s, --scope <scope>', `Installation scope: ${VALID_UPDATE_SCOPES.join(', ')} (default: user)`)`
+- L4261: `} = await import('./cli/handlers/plugins.js');`
+- L4267: `program.command('setup-token').description('Set up a long-lived authentication token (requires Claude subscription)').action(async () => {`
+- L4278: `program.command('agents').description('List configured agents').option('--setting-sources <sources>', 'Comma-separated list of setting sources to load (user, project, local).').action(async () => {`
+- L4281: `} = await import('./cli/handlers/agents.js');`
+- L4289: `const autoModeCmd = program.command('auto-mode').description('Inspect auto mode classifier configuration');`
+- L4290: `autoModeCmd.command('defaults').description('Print the default auto mode environment, allow, and deny rules as JSON').action(async () => {`
+- L4293: `} = await import('./cli/handlers/autoMode.js');`
+- L4297: `autoModeCmd.command('config').description('Print the effective auto mode config as JSON: your settings where set, defaults otherwise').action(async () => {`
+- L4300: `} = await import('./cli/handlers/autoMode.js');`
+- L4304: `autoModeCmd.command('critique').description('Get AI feedback on your custom auto mode rules').option('--model <model>', 'Override which model is used').action(async options => {`
+- L4307: `} = await import('./cli/handlers/autoMode.js');`
+- L4323: `program.command('remote-control', {`
+- L4330: `} = await import('./bridge/bridgeMain.js');`
+- L4335: `program.command('assistant [sessionId]').description('Attach the REPL as a client to a running bridge session. Discovers sessions via API if no sessionId given.').action(() => {`
+- L4346: `program.command('doctor').description('Check the health of your Claude Code auto-updater. Note: The workspace trust dialog is skipped and stdio servers from .mcp.json are spawned for health checks. Only use this command `
+- L4362: `program.command('update').alias('upgrade').description('Check for updates and install if available').action(async () => {`
+- L4365: `} = await import('src/cli/update.js');`
+- L4371: `program.command('up').description('[ANT-ONLY] Initialize or upgrade the local dev environment using the "# claude up" section of the nearest CLAUDE.md').action(async () => {`
+- L4374: `} = await import('src/cli/up.js');`
+- L4382: `program.command('rollback [target]').description('[ANT-ONLY] Roll back to a previous release\n\nExamples:\n  claude rollback                                    Go 1 version back from current\n  claude rollback 3         `
+- L4389: `} = await import('src/cli/rollback.js');`
+- L4395: `program.command('install [target]').description('Install Claude Code native build. Use [target] to specify version (stable, latest, or specific version)').option('--force', 'Force installation even if already installed')`
+- L4400: `} = await import('./cli/handlers/util.js');`
+- L4404: `// ant-only commands`
+- L4412: `program.command('log').description('[ANT-ONLY] Manage conversation logs.').argument('[number|sessionId]', 'A number (0, 1, 2, etc.) to display a specific log, or the sesssion ID (uuid) of a log', validateLogId).action(as`
+- L4415: `} = await import('./cli/handlers/ant.js');`
+- L4420: `program.command('error').description('[ANT-ONLY] View error logs. Optionally provide a number (0, -1, -2, etc.) to display a specific log.').argument('[number]', 'A number (0, 1, 2, etc.) to display a specific log', pars`
+- L4423: `} = await import('./cli/handlers/ant.js');`
+- L4428: `program.command('export').description('[ANT-ONLY] Export a conversation to a text file.').usage('<source> <outputFile>').argument('<source>', 'Session ID, log index (0, 1, 2...), or path to a .json/.jsonl log file').argu`
+- L4436: `} = await import('./cli/handlers/ant.js');`
+- L4440: `const taskCmd = program.command('task').description('[ANT-ONLY] Manage task list tasks');`
+- L4441: `taskCmd.command('create <subject>').description('Create a new task').option('-d, --description <text>', 'Task description').option('-l, --list <id>', 'Task list ID (defaults to "tasklist")').action(async (subject: string`
+- L4447: `} = await import('./cli/handlers/ant.js');`
+- L4450: `taskCmd.command('list').description('List all tasks').option('-l, --list <id>', 'Task list ID (defaults to "tasklist")').option('--pending', 'Show only pending tasks').option('--json', 'Output as JSON').action(async (opt`
+- L4457: `} = await import('./cli/handlers/ant.js');`
+- L4460: `taskCmd.command('get <id>').description('Get details of a task').option('-l, --list <id>', 'Task list ID (defaults to "tasklist")').action(async (id: string, opts: {`
+- L4465: `} = await import('./cli/handlers/ant.js');`
+- L4468: `taskCmd.command('update <id>').description('Update a task').option('-l, --list <id>', 'Task list ID (defaults to "tasklist")').option('-s, --status <status>', `Set status (${TASK_STATUSES.join(', ')})`).option('--subject`
+- L4478: `} = await import('./cli/handlers/ant.js');`
+- L4481: `taskCmd.command('dir').description('Show the tasks directory path').option('-l, --list <id>', 'Task list ID (defaults to "tasklist")').action(async (opts: {`
+- L4486: `} = await import('./cli/handlers/ant.js');`
+- L4492: `program.command('completion <shell>', {`
+- L4499: `} = await import('./cli/handlers/ant.js');`
+- L4504: `await program.parseAsync(process.argv);`
+
+## src/commands.ts
+- L2: `import addDir from './commands/add-dir/index.js'`
+- L3: `import autofixPr from './commands/autofix-pr/index.js'`
+- L4: `import backfillSessions from './commands/backfill-sessions/index.js'`
+- L5: `import btw from './commands/btw/index.js'`
+- L6: `import goodClaude from './commands/good-claude/index.js'`
+- L7: `import issue from './commands/issue/index.js'`
+- L8: `import feedback from './commands/feedback/index.js'`
+- L9: `import clear from './commands/clear/index.js'`
+- L10: `import color from './commands/color/index.js'`
+- L11: `import commit from './commands/commit.js'`
+- L12: `import copy from './commands/copy/index.js'`
+- L13: `import desktop from './commands/desktop/index.js'`
+- L14: `import commitPushPr from './commands/commit-push-pr.js'`
+- L15: `import compact from './commands/compact/index.js'`
+- L16: `import config from './commands/config/index.js'`
+- L17: `import { context, contextNonInteractive } from './commands/context/index.js'`
+- L18: `import cost from './commands/cost/index.js'`
+- L19: `import diff from './commands/diff/index.js'`
+- L20: `import ctx_viz from './commands/ctx_viz/index.js'`
+- L21: `import doctor from './commands/doctor/index.js'`
+- L22: `import memory from './commands/memory/index.js'`
+- L23: `import help from './commands/help/index.js'`
+- L24: `import ide from './commands/ide/index.js'`
+- L25: `import init from './commands/init.js'`
+- L26: `import initVerifiers from './commands/init-verifiers.js'`
+- L27: `import keybindings from './commands/keybindings/index.js'`
+- L28: `import login from './commands/login/index.js'`
+- L29: `import logout from './commands/logout/index.js'`
+- L30: `import installGitHubApp from './commands/install-github-app/index.js'`
+- L31: `import installSlackApp from './commands/install-slack-app/index.js'`
+- L32: `import breakCache from './commands/break-cache/index.js'`
+- L33: `import mcp from './commands/mcp/index.js'`
+- L34: `import mobile from './commands/mobile/index.js'`
+- L35: `import onboarding from './commands/onboarding/index.js'`
+- L36: `import pr_comments from './commands/pr_comments/index.js'`
+- L37: `import releaseNotes from './commands/release-notes/index.js'`
+- L38: `import rename from './commands/rename/index.js'`
+- L39: `import resume from './commands/resume/index.js'`
+- L40: `import review, { ultrareview } from './commands/review.js'`
+- L41: `import session from './commands/session/index.js'`
+- L42: `import share from './commands/share/index.js'`
+- L43: `import skills from './commands/skills/index.js'`
+- L44: `import status from './commands/status/index.js'`
+- L45: `import tasks from './commands/tasks/index.js'`
+- L46: `import teleport from './commands/teleport/index.js'`
+- L50: `? require('./commands/agents-platform/index.js').default`
+- L53: `import securityReview from './commands/security-review.js'`
+- L54: `import bughunter from './commands/bughunter/index.js'`
+- L55: `import terminalSetup from './commands/terminalSetup/index.js'`
+- L56: `import usage from './commands/usage/index.js'`
+- L57: `import theme from './commands/theme/index.js'`
+- L58: `import vim from './commands/vim/index.js'`
+- L64: `? require('./commands/proactive.js').default`
+- L68: `? require('./commands/brief.js').default`
+- L71: `? require('./commands/assistant/index.js').default`
+- L74: `? require('./commands/bridge/index.js').default`
+- L78: `? require('./commands/remoteControlServer/index.js').default`
+- L81: `? require('./commands/voice/index.js').default`
+- L84: `? require('./commands/force-snip.js').default`
+- L88: `require('./commands/workflows/index.js') as typeof import('./commands/workflows/index.js')`
+- L93: `require('./commands/remote-setup/index.js') as typeof import('./commands/remote-setup/index.js')`
+- L102: `? require('./commands/subscribe-pr.js').default`
+- L105: `? require('./commands/ultraplan.js').default`
+- L107: `const torch = feature('TORCH') ? require('./commands/torch.js').default : null`
+- L110: `require('./commands/peers/index.js') as typeof import('./commands/peers/index.js')`
+- L115: `require('./commands/fork/index.js') as typeof import('./commands/fork/index.js')`
+- L120: `require('./commands/buddy/index.js') as typeof import('./commands/buddy/index.js')`
+- L124: `import thinkback from './commands/thinkback/index.js'`
+- L125: `import thinkbackPlay from './commands/thinkback-play/index.js'`
+- L126: `import permissions from './commands/permissions/index.js'`
+- L127: `import plan from './commands/plan/index.js'`
+- L128: `import fast from './commands/fast/index.js'`
+- L129: `import passes from './commands/passes/index.js'`
+- L130: `import privacySettings from './commands/privacy-settings/index.js'`
+- L131: `import hooks from './commands/hooks/index.js'`
+- L132: `import files from './commands/files/index.js'`
+- L133: `import branch from './commands/branch/index.js'`
+- L134: `import agents from './commands/agents/index.js'`
+- L135: `import plugin from './commands/plugin/index.js'`
+- L136: `import reloadPlugins from './commands/reload-plugins/index.js'`
+- L137: `import rewind from './commands/rewind/index.js'`
+- L138: `import heapDump from './commands/heapdump/index.js'`
+- L139: `import mockLimits from './commands/mock-limits/index.js'`
+- L140: `import bridgeKick from './commands/bridge-kick.js'`
+- L141: `import version from './commands/version.js'`
+- L142: `import summary from './commands/summary/index.js'`
+- L146: `} from './commands/reset-limits/index.js'`
+- L147: `import antTrace from './commands/ant-trace/index.js'`
+- L148: `import perfIssue from './commands/perf-issue/index.js'`
+- L149: `import sandboxToggle from './commands/sandbox-toggle/index.js'`
+- L150: `import chrome from './commands/chrome/index.js'`
+- L151: `import stickers from './commands/stickers/index.js'`
+- L152: `import advisor from './commands/advisor.js'`
+- L172: `import env from './commands/env/index.js'`
+- L173: `import exit from './commands/exit/index.js'`
+- L174: `import exportCommand from './commands/export/index.js'`
+- L175: `import model from './commands/model/index.js'`
+- L176: `import tag from './commands/tag/index.js'`
+- L177: `import outputStyle from './commands/output-style/index.js'`
+- L178: `import remoteEnv from './commands/remote-env/index.js'`
+- L179: `import upgrade from './commands/upgrade/index.js'`
+- L183: `} from './commands/extra-usage/index.js'`
+- L184: `import rateLimitOptions from './commands/rate-limit-options/index.js'`
+- L185: `import statusline from './commands/statusline.js'`
+- L186: `import effort from './commands/effort/index.js'`
+- L187: `import stats from './commands/stats/index.js'`
+- L197: `async getPromptForCommand(args, context) {`
+- L198: `const real = (await import('./commands/insights.js')).default`
+- L200: `return real.getPromptForCommand(args, context)`
+- L203: `import oauthRefresh from './commands/oauth-refresh/index.js'`
+- L204: `import debugToolCall from './commands/debug-tool-call/index.js'`
+- L364: `'Skill directory commands failed to load, continuing without them',`
+- L374: `// Bundled skills are registered synchronously at startup`
+- L379: ``getSkills returning: ${skillDirCommands.length} skill dir commands, ${pluginSkills.length} plugin skills, ${bundledSkills.length} bundled skills, ${builtinPluginSkills.length} builtin plugin skills`,`
+- L409: `* Filters commands by their declared `availability` (auth/provider requirement).`
+- L411: `* This runs before `isEnabled()` so that provider-gated commands are hidden`
+- L472: `* Returns commands available to the current user. The expensive loading is`
+- L482: `// Build base commands without dynamic skills`
+- L504: `// Insert dynamic skills after plugin skills but before built-in commands`
+- L520: `* Clears only the memoization caches for commands, WITHOUT clearing skill caches.`
+- L542: `* Filter AppState.mcp.commands to MCP-provided skills (prompt-type,`
+- L561: `// SkillTool shows ALL prompt-based commands that the model can invoke`
+- L562: `// This includes both skills (from /skills/) and commands (from /commands/)`
+- L571: `// Always include skills from /skills/ dirs, bundled skills, and legacy /commands/ entries`
+- L573: `// Plugin/MCP commands still require an explicit description to appear in the listing.`
+- L576: `cmd.loadedFrom === 'commands_DEPRECATED' ||`
+- L583: `// Filters commands to include only skills. Skills are commands that provide`
+- L616: `* 1. Pre-filtering commands in main.tsx before REPL renders (prevents race with CCR init)`
+- L617: `* 2. Preserving local-only commands in REPL's handleRemoteInit after CCR filters`
+- L640: `* Builtin commands of type 'local' that ARE safe to execute when received`
+- L644: `* 'local-jsx' commands are blocked by type (they render Ink UI) and`
+- L645: `* 'prompt' commands are allowed by type (they expand to text sent to the`
+- L646: `* model) — this set only gates 'local' commands.`
+- L663: `* Whether a slash command is safe to execute when its input arrived over the`
+- L666: `* PR #19134 blanket-blocked all slash commands from bridge inbound because`
+- L668: `* that with an explicit allowlist: 'prompt' commands (skills) expand to text`
+- L669: `* and are safe by construction; 'local' commands need an explicit opt-in via`
+- L670: `* BRIDGE_SAFE_COMMANDS; 'local-jsx' commands render Ink UI and stay blocked.`
+- L672: `export function isBridgeSafeCommand(cmd: Command): boolean {`
+- L679: `* Filter commands to only include those safe for remote mode.`
+- L680: `* Used to pre-filter commands when rendering the REPL in --remote mode,`
+- L681: `* preventing local-only commands from being briefly available before`
+- L684: `export function filterCommandsForRemoteMode(commands: Command[]): Command[] {`
+- L685: `return commands.filter(cmd => REMOTE_SAFE_COMMANDS.has(cmd))`
+- L688: `export function findCommand(`
+- L690: `commands: Command[],`
+- L692: `return commands.find(`
+- L700: `export function hasCommand(commandName: string, commands: Command[]): boolean {`
+- L701: `return findCommand(commandName, commands) !== undefined`
+- L704: `export function getCommand(commandName: string, commands: Command[]): Command {`
+- L705: `const command = findCommand(commandName, commands)`
+- L708: ``Command ${commandName} not found. Available commands: ${commands`
+
+## src/entrypoints/cli.tsx
+- L37: `if (args.length === 1 && (args[0] === '--version' || args[0] === '-v' || args[0] === '-V')) {`
+- L47: `} = await import('../utils/startupProfiler.js');`
+- L53: `if (feature('DUMP_SYSTEM_PROMPT') && args[0] === '--dump-system-prompt') {`
+- L57: `} = await import('../utils/config.js');`
+- L61: `} = await import('../utils/model/model.js');`
+- L66: `} = await import('../constants/prompts.js');`
+- L76: `} = await import('../utils/claudeInChrome/mcpServer.js');`
+- L83: `} = await import('../utils/claudeInChrome/chromeNativeHost.js');`
+- L90: `} = await import('../utils/computerUse/mcpServer.js');`
+- L96: `// Must come before the daemon subcommand check: spawned per-worker, so`
+- L100: `if (feature('DAEMON') && args[0] === '--daemon-worker') {`
+- L103: `} = await import('../daemon/workerRegistry.js');`
+- L112: `if (feature('BRIDGE_MODE') && (args[0] === 'remote-control' || args[0] === 'rc' || args[0] === 'remote' || args[0] === 'sync' || args[0] === 'bridge')) {`
+- L116: `} = await import('../utils/config.js');`
+- L121: `} = await import('../bridge/bridgeEnabled.js');`
+- L124: `} = await import('../bridge/types.js');`
+- L127: `} = await import('../bridge/bridgeMain.js');`
+- L130: `} = await import('../utils/process.js');`
+- L138: `} = await import('../utils/auth.js');`
+- L155: `} = await import('../services/policyLimits/index.js');`
+- L164: `// Fast-path for `claude daemon [subcommand]`: long-running supervisor.`
+- L165: `if (feature('DAEMON') && args[0] === 'daemon') {`
+- L169: `} = await import('../utils/config.js');`
+- L173: `} = await import('../utils/sinks.js');`
+- L177: `} = await import('../daemon/main.js');`
+- L185: `if (feature('BG_SESSIONS') && (args[0] === 'ps' || args[0] === 'logs' || args[0] === 'attach' || args[0] === 'kill' || args.includes('--bg') || args.includes('--background'))) {`
+- L189: `} = await import('../utils/config.js');`
+- L191: `const bg = await import('../cli/bg.js');`
+- L192: `switch (args[0]) {`
+- L211: `// Fast-path for template job commands.`
+- L212: `if (feature('TEMPLATES') && (args[0] === 'new' || args[0] === 'list' || args[0] === 'reply')) {`
+- L216: `} = await import('../cli/handlers/templateJobs.js');`
+- L226: `if (feature('BYOC_ENVIRONMENT_RUNNER') && args[0] === 'environment-runner') {`
+- L230: `} = await import('../environment-runner/main.js');`
+- L236: `// targeting the SelfHostedRunnerWorkerService API (register + poll; poll IS`
+- L238: `if (feature('SELF_HOSTED_RUNNER') && args[0] === 'self-hosted-runner') {`
+- L242: `} = await import('../self-hosted-runner/main.js');`
+- L253: `} = await import('../utils/config.js');`
+- L257: `} = await import('../utils/worktreeModeEnabled.js');`
+- L261: `} = await import('../utils/worktree.js');`
+- L270: `} = await import('../utils/process.js');`
+- L276: `// Redirect common update flag mistakes to the update subcommand`
+- L277: `if (args.length === 1 && (args[0] === '--update' || args[0] === '--upgrade')) {`
+- L290: `} = await import('../utils/earlyInput.js');`
+- L295: `} = await import('../main.js');`

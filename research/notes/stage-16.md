@@ -1,0 +1,14 @@
+阶段 16：清理 assistant / workflow / sdk 附属模块
+- 已为以下模块添加最小 stub：
+  - WorkflowTool/constants
+  - SnapshotUpdateDialog
+  - AssistantSessionChooser
+  - commands/assistant/assistant
+  - sdk/runtimeTypes
+- 再次运行最小 bundle 后，unresolved 继续维持在 5 个，并首次明显贴近入口 fast-path 相关模块：
+  - `./sdk/toolTypes.js`
+  - `../daemon/workerRegistry.js`
+  - `../daemon/main.js`
+  - `../cli/bg.js`
+  - `../cli/handlers/templateJobs.js`
+- 结论：当前已经从大量外围 feature / UI / workflow / monitor / assistant 支路，收敛到更接近 CLI 早期分发路径本身的模块。距离“最小入口骨架”进一步缩短。

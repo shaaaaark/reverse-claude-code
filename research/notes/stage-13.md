@@ -1,0 +1,14 @@
+阶段 13：清理资源文件与小型辅助模块
+- 已为以下模块/资源添加最小 stub：
+  - ultraplan/prompt.txt
+  - connectorText
+  - SnipBoundaryMessage
+  - SendUserFileTool/prompt
+  - systemThemeWatcher
+- 最小 bundle 再推进一层后，unresolved 仍保持在 5 个，但进一步收敛到消息/评审相关模块：
+  - `./UserGitHubWebhookMessage.js`
+  - `./UserForkBoilerplateMessage.js`
+  - `./UserCrossSessionMessage.js`
+  - `../../tools/ReviewArtifactTool/ReviewArtifactTool.js`
+  - `./ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.js`
+- 结论：最小入口骨架仍在稳定收敛，当前阻塞已明显落入 UI/消息组件与评审特性边角模块，而非核心 CLI 主路径。
